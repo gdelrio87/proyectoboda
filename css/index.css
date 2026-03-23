@@ -69,8 +69,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 2.5rem));
-    padding-bottom: max(clamp(2rem, 8vh, 5rem), env(safe-area-inset-bottom, 2rem));
+    padding-bottom: max(clamp(1.35rem, 5vh, 3rem), env(safe-area-inset-bottom, 1.35rem));
     z-index: 10;
     background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
 }
@@ -81,11 +80,12 @@ html, body {
 
 .end-buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.85rem;
-    align-items: center;
+    align-items: stretch;
+    justify-content: space-between;
     width: 100%;
-    max-width: 320px;
+    max-width: 520px;
     padding: 0 1.5rem;
 }
 
@@ -100,6 +100,7 @@ html, body {
     border: none;
     text-decoration: none;
     display: block;
+    flex: 1 1 0;
     transition: opacity 0.2s, transform 0.15s;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -123,10 +124,22 @@ html, body {
 /* Orientación y responsive */
 @media (orientation: landscape) and (max-height: 500px) {
     .end-buttons {
-        flex-direction: row;
         max-width: 500px;
     }
     .action-btn {
         padding: 0.7em 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .end-buttons {
+        gap: 0.65rem;
+        padding: 0 1rem;
+    }
+
+    .action-btn {
+        font-size: 0.82rem;
+        letter-spacing: 0.06em;
+        padding: 0.8em 0.5em;
     }
 }
