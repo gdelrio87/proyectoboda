@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-wrapper {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+}
+
+#introVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ── Overlay de inicio ── */
+.start-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    z-index: 10;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.start-text {
+    font-family: 'Georgia', serif;
+    color: #fff;
+    font-size: clamp(1rem, 4.5vw, 1.6rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    padding: 0.75em 2.2em;
+    animation: pulse 2.2s ease-in-out infinite;
+    pointer-events: none;
+    user-select: none;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.97); }
+}
+
+/* ── Overlay de fin ── */
+.end-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 2.5rem));
+    padding-bottom: max(clamp(2rem, 8vh, 5rem), env(safe-area-inset-bottom, 2rem));
+    z-index: 10;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+}
+
+.end-overlay.hidden {
+    display: none;
+}
+
+.end-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    padding: 0 1.5rem;
+}
+
+.action-btn {
+    font-family: 'Georgia', serif;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    letter-spacing: 0.1em;
+    padding: 0.85em 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: block;
+    transition: opacity 0.2s, transform 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.action-btn:active {
+    transform: scale(0.97);
+}
+
+.action-btn-replay {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.action-btn-continue {
+    background: #f3be63;
+    color: #1b1a18;
+}
+
+/* Orientación y responsive */
+@media (orientation: landscape) and (max-height: 500px) {
+    .end-buttons {
+        flex-direction: row;
+        max-width: 500px;
+    }
+    .action-btn {
+        padding: 0.7em 0;
+    }
+}
