@@ -2,45 +2,73 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Nuestra Boda</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <main class="envelope-landing">
-        <div class="background-image"></div>
+    <div class="video-wrapper">
 
-        <div class="envelope-container">
-            <div class="envelope" id="envelope">
-                <!-- Sobre cerrado -->
-                <div class="envelope-closed" id="envelopeClosed">
-                    <div class="envelope-body">
-                        <div class="envelope-front">
-                            <div class="envelope-flap"></div>
-                            <div class="envelope-base"></div>
-                        </div>
-                    </div>
-                </div>
+        <video id="introVideo"
+               src="assets/videos/intro.mp4"
+               playsinline
+               preload="auto">
+        </video>
 
-                <!-- Carta abierta -->
-                <div class="envelope-open" id="envelopeOpen" hidden>
-                    <div class="card">
-                        <h1 class="card-title">Estás invitado a la boda de</h1>
-                        <h2 class="card-names">Elizabeth & Gonzalo</h2>
-                        <p class="card-date">21 de noviembre del 2026</p>
-                        <p class="card-location">Sevilla</p>
-                    </div>
-                </div>
+        <!-- Overlay: pulsa para comenzar -->
+        <div class="start-overlay" id="startOverlay" role="button" aria-label="Pulsa para comenzar">
+            <span class="start-text">Pulsa para comenzar</span>
+        </div>
+
+        <!-- Overlay: fin del vídeo -->
+        <div class="end-overlay hidden" id="endOverlay" aria-live="polite">
+            <div class="end-buttons">
+                <button class="action-btn action-btn-replay" id="replayBtn">Volver a reproducir</button>
+                <a href="main.html" class="action-btn action-btn-continue">Continuar</a>
             </div>
         </div>
 
-        <div id="confetti-container" class="confetti-container"></div>
+    </div>
 
-        <section id="envelopeActions" class="actions" aria-live="polite" hidden>
-            <a href="main.html" class="action-button action-button-primary">Continuar</a>
-        </section>
-    </main>
+    <script>
+        const video       = document.getElementById('introVideo');
+        const startOvl    = document.getElementById('startOverlay');
+        const endOvl      = document.getElementById('endOverlay');
+        const replayBtn   = document.getElementById('replayBtn');
 
-    <script src="js/main.js"></script>
+        // Muestra el primer fotograma en cuanto haya metadatos
+        video.addEventListener('loadedmetadata', () => {
+            video.currentTime = 0.001;
+        });
+
+        function playVideo() {
+            video.muted = false;
+            video.currentTime = 0;
+            const p = video.play();
+            if (p !== undefined) {
+                p.catch(() => {
+                    // Fallback: algunos navegadores bloquean audio en el primer intento
+                    video.muted = true;
+                    video.play();
+                });
+            }
+        }
+
+        startOvl.addEventListener('click', () => {
+            startOvl.style.display = 'none';
+            playVideo();
+        });
+
+        video.addEventListener('ended', () => {
+            endOvl.classList.remove('hidden');
+        });
+
+        replayBtn.addEventListener('click', () => {
+            endOvl.classList.add('hidden');
+            playVideo();
+        });
+    </script>
 </body>
 </html>
