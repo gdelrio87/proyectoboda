@@ -71,75 +71,19 @@
     <!-- Sección 3: Formulario -->
     <section class="form-section">
         <h2>Confirma tu Asistencia</h2>
-        <form name="wedding-rsvp" action="https://docs.google.com/forms/u/0/d/YOUR_FORM_ID/formResponse" method="POST">
+        <form id="weddingRsvpForm" name="wedding-rsvp" action="https://docs.google.com/forms/d/e/1FAIpQLScknFhrSgY9l_ARf3i2K1pUocwlVXobr12HmDrmP2iJKg0fHQ/formResponse" method="POST" target="google-form-response-frame">
             
             <div class="form-group">
                 <label>¿Asistirás a la boda?</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="entry.asistencia" value="Sí" required> Sí</label>
-                    <label><input type="radio" name="entry.asistencia" value="No" required> No</label>
+                    <label><input type="radio" name="entry.877086558" value="Si" required> Sí, allí estaré</label>
+                    <label><input type="radio" name="entry.877086558" value="No" required> No, me es imposible</label>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label>¿Eres invitado directo?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="entry.invitado_directo" value="Sí" required> Sí</label>
-                    <label><input type="radio" name="entry.invitado_directo" value="No" required> No</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="nombre">Nombre del invitado</label>
-                <input type="text" id="nombre" name="entry.nombre_invitado" required>
-            </div>
-
-            <div class="form-group">
-                <label>¿Traerás niños?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="entry.tiene_ninos" value="Sí" required> Sí</label>
-                    <label><input type="radio" name="entry.tiene_ninos" value="No" required> No</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="num_ninos">¿Cuántos niños?</label>
-                <input type="number" id="num_ninos" name="entry.numero_ninos" min="0">
-            </div>
-
-            <div class="form-group">
-                <label>¿Tiene intolerancias alimentarias?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="entry.intolerancias" value="Sí" required> Sí</label>
-                    <label><input type="radio" name="entry.intolerancias" value="No" required> No</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="tipo_intolerancia">¿Cuál es la intolerancia?</label>
-                <input type="text" id="tipo_intolerancia" name="entry.tipo_intolerancia">
-            </div>
-
-            <div class="form-group">
-                <label>¿Necesitas autobús?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="entry.necesita_bus" value="Sí (ida y vuelta)" required> Sí (ida y vuelta)</label>
-                    <label><input type="radio" name="entry.necesita_bus" value="Sí (solo ida)" required> Sí (solo ida)</label>
-                    <label><input type="radio" name="entry.necesita_bus" value="Sí (solo vuelta)" required> Sí (solo vuelta)</label>
-                    <label><input type="radio" name="entry.necesita_bus" value="No" required> No</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Si necesitas autobús de vuelta, ¿a qué hora?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="entry.hora_bus_vuelta" value="20:30"> 20:30</label>
-                    <label><input type="radio" name="entry.hora_bus_vuelta" value="Fin de fiesta"> Fin de fiesta</label>
-                </div>
-            </div>
-
-            <button type="submit">Enviar Confirmación</button>
+            <button id="weddingRsvpSubmit" type="submit">Enviar Confirmación</button>
         </form>
+        <p id="formStatus" class="form-status" hidden aria-live="polite"></p>
+        <iframe name="google-form-response-frame" id="googleFormResponseFrame" class="form-response-frame" title="Respuesta del formulario"></iframe>
     </section>
 
     <!-- Sección 4: Cierre -->
@@ -150,27 +94,6 @@
             XXXXX-XXXXX-XXXX-XXXXX
         </div>
     </section>
-
-    <script>
-        // Countdown Timer
-        function updateCountdown() {
-            const weddingDate = new Date('November 21, 2026 12:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

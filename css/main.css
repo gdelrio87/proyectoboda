@@ -174,6 +174,37 @@ button {
     min-height: 46px;
 }
 
+button:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.form-status {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.form-status.is-success {
+    background: #e7f7ed;
+    border: 1px solid #9ed0ac;
+    color: #1f6b38;
+}
+
+.form-status.is-error {
+    background: #fdecec;
+    border: 1px solid #e0a4a4;
+    color: #8a1f1f;
+}
+
+.form-response-frame {
+    width: 0;
+    height: 0;
+    border: 0;
+    visibility: hidden;
+}
+
 @media (hover: hover) {
     button:hover {
         background: var(--primary-dark);
