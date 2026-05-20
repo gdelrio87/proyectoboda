@@ -89,6 +89,7 @@
 })();
 
 (function () {
+    const monthsElement = document.getElementById('months');
     const daysElement = document.getElementById('days');
     const hoursElement = document.getElementById('hours');
     const minutesElement = document.getElementById('minutes');
@@ -104,19 +105,35 @@
     let formSubmissionTimeoutId = null;
 
     function updateCountdown() {
-        if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+        if (!monthsElement || !daysElement || !hoursElement || !minutesElement || !secondsElement) {
             return;
         }
 
-        const weddingDate = new Date('November 21, 2026 12:00:00').getTime();
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+        const wedding = new Date('November 21, 2026 12:00:00');
+        const now = new Date();
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Calcular meses completos restantes
+        let months = (wedding.getFullYear() - now.getFullYear()) * 12 + (wedding.getMonth() - now.getMonth());
 
+        // Fecha futura avanzando 'months' meses desde ahora
+        const futureDate = new Date(now);
+        futureDate.setMonth(futureDate.getMonth() + months);
+
+        // Si nos pasamos, retroceder un mes
+        if (futureDate > wedding) {
+            months--;
+            futureDate.setMonth(futureDate.getMonth() - 1);
+        }
+
+        // Milisegundos restantes tras restar los meses completos
+        const remaining = wedding - futureDate;
+
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        monthsElement.textContent = months;
         daysElement.textContent = days;
         hoursElement.textContent = hours;
         minutesElement.textContent = minutes;
@@ -151,7 +168,7 @@
         formStatus.classList.toggle('is-success', !isError);
     }
 
-    if (daysElement && hoursElement && minutesElement && secondsElement) {
+    if (monthsElement && daysElement && hoursElement && minutesElement && secondsElement) {
         updateCountdown();
         setInterval(updateCountdown, 1000);
     }
