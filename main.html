@@ -35,44 +35,50 @@
 
     <!-- Sección 2: Timeline -->
     <section class="timeline">
-        <h2>Cronograma de la Boda</h2>
-        <div class="timeline-item">
-            <div class="timeline-time">12:00</div>
-            <div class="timeline-content">
-                <strong>Ceremonia</strong><br>
-                Iglesia de los Terceros, Sevilla
+        <details>
+            <summary><h2>Cronograma de la Boda</h2></summary>
+            <div class="accordion-body">
+                <div class="timeline-item">
+                    <div class="timeline-time">12:00</div>
+                    <div class="timeline-content">
+                        <strong>Ceremonia</strong><br>
+                        Iglesia de los Terceros, Sevilla
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">14:30</div>
+                    <div class="timeline-content">
+                        <strong>Cóctel</strong><br>
+                        Hacienda
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">16:30</div>
+                    <div class="timeline-content">
+                        <strong>Comida</strong>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">18:30</div>
+                    <div class="timeline-content">
+                        <strong>Inicio de la Fiesta</strong>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">23:30 - 00:30</div>
+                    <div class="timeline-content">
+                        <strong>Fin de la Fiesta</strong>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-time">14:30</div>
-            <div class="timeline-content">
-                <strong>Cóctel</strong><br>
-                Hacienda
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-time">16:30</div>
-            <div class="timeline-content">
-                <strong>Comida</strong>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-time">18:30</div>
-            <div class="timeline-content">
-                <strong>Inicio de la Fiesta</strong>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-time">23:30 - 00:30</div>
-            <div class="timeline-content">
-                <strong>Fin de la Fiesta</strong>
-            </div>
-        </div>
+        </details>
     </section>
 
     <!-- Sección 3: Formulario -->
     <section class="form-section">
-        <h2>Confirma tu Asistencia</h2>
+        <details>
+            <summary><h2>Confirma tu Asistencia</h2></summary>
+            <div class="accordion-body">
         <form id="weddingRsvpForm" name="wedding-rsvp" action="https://docs.google.com/forms/d/e/1FAIpQLScknFhrSgY9l_ARf3i2K1pUocwlVXobr12HmDrmP2iJKg0fHQ/formResponse" method="POST" target="google-form-response-frame">
             
             <div class="form-group">
@@ -86,6 +92,8 @@
         </form>
         <p id="formStatus" class="form-status" hidden aria-live="polite"></p>
         <iframe name="google-form-response-frame" id="googleFormResponseFrame" class="form-response-frame" title="Respuesta del formulario"></iframe>
+            </div>
+        </details>
     </section>
 
     <!-- Sección 4: Cierre -->

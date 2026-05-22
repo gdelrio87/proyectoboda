@@ -1,9 +1,10 @@
 :root {
-    --primary: #667eea;
-    --primary-dark: #764ba2;
-    --surface: #ffffff;
-    --surface-soft: #f9f9f9;
-    --text: #333333;
+    --primary: #9c4c4c;
+    --primary-dark: #6b2e2e;
+    --surface: #fdf8f8;
+    --surface-soft: #f8edec;
+    --text: #4a2020;
+    --text-on-dark: #ffffff;
 }
 
 * {
@@ -17,6 +18,7 @@ body {
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
+    background: linear-gradient(160deg, #fff0ef 0%, #fce4e0 45%, #fff5f0 100%);
 }
 
 section {
@@ -91,15 +93,27 @@ section {
 /* Sección 2: Timeline */
 .timeline {
     background: var(--surface-soft);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(107, 46, 46, 0.10);
 }
 
 .timeline h2,
-.form-section h2,
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 0;
+    font-size: clamp(1.6rem, 6vw, 2rem);
+    line-height: 1.2;
+    color: var(--primary-dark);
+    letter-spacing: 0.02em;
+}
+
 .closing h2 {
     text-align: center;
     margin-bottom: 26px;
     font-size: clamp(1.6rem, 6vw, 2rem);
     line-height: 1.2;
+    color: var(--text-on-dark);
+    letter-spacing: 0.02em;
 }
 
 .timeline-item {
@@ -111,11 +125,12 @@ section {
     background: var(--surface);
     border-left: 4px solid var(--primary);
     border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(107, 46, 46, 0.08);
 }
 
 .timeline-time {
     font-weight: bold;
-    color: var(--primary);
+    color: var(--primary-dark);
     min-width: 0;
     font-size: 1rem;
 }
@@ -127,12 +142,15 @@ section {
 /* Sección 3: Formulario */
 .form-section {
     background: var(--surface);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(107, 46, 46, 0.10);
 }
 
 form {
     background: var(--surface-soft);
     padding: 18px 14px;
     border-radius: 10px;
+    border: 1px solid rgba(156, 76, 76, 0.15);
 }
 
 .form-group {
@@ -143,7 +161,7 @@ label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: var(--text);
+    color: var(--primary-dark);
 }
 
 input[type="text"],
@@ -153,10 +171,23 @@ select,
 textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(156, 76, 76, 0.3);
     border-radius: 6px;
     font-family: Arial, sans-serif;
     font-size: 1rem;
+    background: #fff;
+    color: var(--text);
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(156, 76, 76, 0.15);
 }
 
 input[type="radio"],
@@ -180,7 +211,7 @@ input[type="checkbox"] {
 }
 
 button {
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: #ffffff;
     padding: 13px 22px;
     border: none;
@@ -190,6 +221,9 @@ button {
     cursor: pointer;
     width: 100%;
     min-height: 46px;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px rgba(107, 46, 46, 0.3);
 }
 
 button:disabled {
@@ -225,7 +259,8 @@ button:disabled {
 
 @media (hover: hover) {
     button:hover {
-        background: var(--primary-dark);
+        opacity: 0.88;
+        box-shadow: 0 4px 16px rgba(107, 46, 46, 0.4);
     }
 }
 
@@ -233,18 +268,22 @@ button:disabled {
 .closing {
     text-align: center;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: #ffffff;
+    color: var(--text-on-dark);
     font-size: 1.03rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(107, 46, 46, 0.22);
 }
 
 .account-info {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     padding: 18px;
     border-radius: 10px;
     margin-top: 20px;
     font-weight: bold;
     font-size: clamp(1rem, 4vw, 1.2rem);
     overflow-wrap: anywhere;
+    letter-spacing: 0.04em;
 }
 
 .hidden {
@@ -306,4 +345,52 @@ button:disabled {
     form {
         padding: 30px;
     }
+}
+
+/* ── Acordeón ────────────────────────────────────────────── */
+details {
+    width: 100%;
+}
+
+details > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 4px 0 20px;
+    user-select: none;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+details > summary h2 {
+    margin-bottom: 0;
+    transition: color 0.2s;
+}
+
+details > summary::after {
+    content: '▾';
+    font-size: 1.3rem;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+    display: inline-block;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+details[open] > summary::after {
+    transform: rotate(-180deg);
+}
+
+.accordion-body {
+    animation: accordionOpen 0.28s ease;
+}
+
+@keyframes accordionOpen {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
