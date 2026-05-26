@@ -228,3 +228,38 @@
         });
     }
 })();
+
+/* ── Menú de navegación (sección 0) ── */
+(function () {
+    const toggle = document.getElementById('navToggle');
+    const nav    = document.getElementById('heroNav');
+    if (!toggle || !nav) return;
+
+    function openMenu() {
+        nav.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        nav.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeMenu() {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.setAttribute('aria-hidden', 'true');
+    }
+
+    toggle.addEventListener('click', () => {
+        nav.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+
+    // Cerrar al pulsar un enlace
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Cerrar al pulsar fuera del menú
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+            closeMenu();
+        }
+    });
+})();

@@ -7,8 +7,35 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
+    <!-- Sección 0: Imagen principal -->
+    <section class="hero-image">
+
+        <!-- Botón de menú -->
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+        </button>
+
+        <!-- Menú de navegación -->
+        <nav class="hero-nav" id="heroNav" aria-hidden="true">
+            <ul>
+                <li><a href="#countdown">Cuenta Atrás</a></li>
+                <li><a href="#cronograma">Cronograma</a></li>
+                <li><a href="#confirmacion">Confirmar Asistencia</a></li>
+                <li><a href="#regalo">Regalo</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile: fondo_pedida (portrait) -->
+        <img src="assets/images/fondo_pedida.jpeg" alt="Elizabeth y Gonzalo" class="hero-img hero-img-mobile">
+        <!-- Tablet/Desktop: fondo_16_9 (landscape) -->
+        <img src="assets/images/fondo_16_9.jpeg" alt="Elizabeth y Gonzalo" class="hero-img hero-img-desktop">
+    </section>
+
     <!-- Sección 1: Héroe con Countdown -->
-    <section class="hero">
+    <section class="hero" id="countdown">
         <div class="countdown">
             <div class="countdown-item">
                 <div id="months">0</div>
@@ -33,11 +60,12 @@
         </div>
     </section>
 
+    <!-- Grid de secciones (2 columnas en desktop) -->
+    <div class="sections-grid">
+
     <!-- Sección 2: Timeline -->
-    <section class="timeline">
-        <details>
+    <section class="timeline" id="cronograma">
             <summary><h2>Cronograma de la Boda</h2></summary>
-            <div class="accordion-body">
                 <div class="timeline-item">
                     <div class="timeline-time">12:00</div>
                     <div class="timeline-content">
@@ -70,15 +98,12 @@
                         <strong>Fin de la Fiesta</strong>
                     </div>
                 </div>
-            </div>
-        </details>
     </section>
 
     <!-- Sección 3: Formulario -->
-    <section class="form-section">
-        <details>
+    <section class="form-section" id="confirmacion">
             <summary><h2>Confirma tu Asistencia</h2></summary>
-            <div class="accordion-body">
+         
         <form id="weddingRsvpForm" name="wedding-rsvp" action="https://docs.google.com/forms/d/e/1FAIpQLScknFhrSgY9l_ARf3i2K1pUocwlVXobr12HmDrmP2iJKg0fHQ/formResponse" method="POST" target="google-form-response-frame">
             
             <div class="form-group">
@@ -92,12 +117,12 @@
         </form>
         <p id="formStatus" class="form-status" hidden aria-live="polite"></p>
         <iframe name="google-form-response-frame" id="googleFormResponseFrame" class="form-response-frame" title="Respuesta del formulario"></iframe>
-            </div>
-        </details>
     </section>
 
+    </div><!-- /sections-grid -->
+
     <!-- Sección 4: Cierre -->
-    <section class="closing">
+    <section class="closing" id="regalo">
         <h2>¡Estamos felices de que vengas!</h2>
         <p>Si nos quisieras hacer un regalo, puedes hacerlo al siguiente número de cuenta:</p>
         <div class="account-info">
