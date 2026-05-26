@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Elizabeth & Gonzalo</title>
+    <title>Elizabeth & Gonzalo | 21/11/26 | Sevilla</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <div class="video-wrapper">
 
-        <video id="introVideo"
-               src="assets/videos/final_video_intro.mp4"
+        <!-- Vídeo mobile (vertical) -->
+        <video id="introVideoMobile"
+               class="intro-video intro-video-mobile"
+               src="assets/videos/final_video_intro_sobre.mp4"
+               playsinline
+               preload="auto">
+        </video>
+
+        <!-- Vídeo tablet/desktop (horizontal) -->
+        <video id="introVideoDesktop"
+               class="intro-video intro-video-desktop"
+               src="assets/videos/intro_16_9_final_con_sobre.mp4"
                playsinline
                preload="auto">
         </video>
@@ -24,26 +34,37 @@
 
         <!-- Overlay: fin del vídeo -->
         <div class="end-overlay hidden" id="endOverlay" aria-live="polite">
-            <div class="end-buttons">
-                <button class="action-btn action-btn-replay" id="replayBtn">Volver al inicio </button>
-                <a href="main.html" class="action-btn action-btn-continue">Continuar</a>
-            </div>
+            <a href="main.html" class="btn-continue">Continuar</a>
+            <button class="btn-replay" id="replayBtn">Volver a ver</button>
         </div>
 
     </div>
 
     <script>
-        const video       = document.getElementById('introVideo');
-        const startOvl    = document.getElementById('startOverlay');
-        const endOvl      = document.getElementById('endOverlay');
-        const replayBtn   = document.getElementById('replayBtn');
+        const videoMobile  = document.getElementById('introVideoMobile');
+        const videoDesktop = document.getElementById('introVideoDesktop');
+        const startOvl     = document.getElementById('startOverlay');
+        const endOvl       = document.getElementById('endOverlay');
+        const replayBtn    = document.getElementById('replayBtn');
 
-        // Muestra el primer fotograma en cuanto haya metadatos
-        video.addEventListener('loadedmetadata', () => {
-            video.currentTime = 0.001;
+        const mobileQuery = window.matchMedia('(max-width: 767px)');
+
+        function activeVideo() {
+            return mobileQuery.matches ? videoMobile : videoDesktop;
+        }
+
+        // Muestra el primer fotograma de cada vídeo en cuanto haya metadatos
+        [videoMobile, videoDesktop].forEach(v => {
+            v.addEventListener('loadedmetadata', () => {
+                v.currentTime = 0.001;
+            });
+            v.addEventListener('ended', () => {
+                endOvl.classList.remove('hidden');
+            });
         });
 
         function playVideo() {
+            const video = activeVideo();
             video.muted = false;
             video.currentTime = 0;
             const p = video.play();
@@ -59,10 +80,6 @@
         startOvl.addEventListener('click', () => {
             startOvl.style.display = 'none';
             playVideo();
-        });
-
-        video.addEventListener('ended', () => {
-            window.location.href = 'main.html';
         });
 
         replayBtn.addEventListener('click', () => {

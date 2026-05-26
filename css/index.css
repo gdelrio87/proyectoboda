@@ -19,13 +19,23 @@ html, body {
     height: 100dvh;
 }
 
-#introVideo {
+.intro-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/* Mobile (≤767px): vídeo vertical visible, horizontal oculto */
+.intro-video-desktop { display: none; }
+.intro-video-mobile  { display: block; }
+
+/* Tablet / Desktop (≥768px): vídeo horizontal visible, vertical oculto */
+@media (min-width: 768px) {
+    .intro-video-mobile  { display: none; }
+    .intro-video-desktop { display: block; }
 }
 
 /* ── Overlay de inicio ── */
@@ -69,77 +79,76 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding-bottom: max(clamp(1.35rem, 5vh, 3rem), env(safe-area-inset-bottom, 1.35rem));
+    padding-bottom: max(clamp(2.5rem, 7vh, 5rem), env(safe-area-inset-bottom, 2.5rem));
     z-index: 10;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    /* Gradiente suave solo en la franja inferior */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.38) 0%, transparent 28%);
+    animation: fadeInEnd 1.2s ease forwards;
+}
+
+@keyframes fadeInEnd {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .end-overlay.hidden {
     display: none;
 }
 
-.end-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 0.85rem;
-    align-items: stretch;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 520px;
-    padding: 0 1.5rem;
+/* ── Botón principal: Continuar ── */
+.btn-continue {
+    font-family: 'Georgia', serif;
+    font-size: clamp(0.72rem, 2.2vw, 0.88rem);
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 0.72em 2.8em;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background 0.3s, border-color 0.3s;
+    animation: floatHint 3.5s ease-in-out 1.8s infinite;
 }
 
-.action-btn {
+@keyframes floatHint {
+    0%, 80%, 100% { transform: translateY(0); }
+    90%            { transform: translateY(-5px); }
+}
+
+.btn-continue:hover,
+.btn-continue:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+    outline: none;
+}
+
+/* ── Botón secundario: Volver a ver ── */
+.btn-replay {
+    margin-top: 1rem;
     font-family: 'Georgia', serif;
-    font-size: clamp(0.9rem, 3.5vw, 1rem);
-    letter-spacing: 0.1em;
-    padding: 0.85em 0;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
+    font-size: clamp(0.6rem, 1.8vw, 0.72rem);
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.38);
+    background: none;
     border: none;
-    text-decoration: none;
-    display: block;
-    flex: 1 1 0;
-    transition: opacity 0.2s, transform 0.15s;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 255, 255, 0.18);
+    padding: 0.3em 0.8em;
+    transition: color 0.25s;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
 }
 
-.action-btn:active {
-    transform: scale(0.97);
-}
-
-.action-btn-replay {
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.action-btn-continue {
-    background: #f3be63;
-    color: #1b1a18;
-}
-
-/* Orientación y responsive */
-@media (orientation: landscape) and (max-height: 500px) {
-    .end-buttons {
-        max-width: 500px;
-    }
-    .action-btn {
-        padding: 0.7em 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .end-buttons {
-        gap: 0.65rem;
-        padding: 0 1rem;
-    }
-
-    .action-btn {
-        font-size: 0.82rem;
-        letter-spacing: 0.06em;
-        padding: 0.8em 0.5em;
-    }
+.btn-replay:hover,
+.btn-replay:focus {
+    color: rgba(255, 255, 255, 0.65);
+    outline: none;
 }
