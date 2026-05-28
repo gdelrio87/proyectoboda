@@ -79,6 +79,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    gap: 1rem;
     padding-bottom: max(clamp(2.5rem, 7vh, 5rem), env(safe-area-inset-bottom, 2.5rem));
     z-index: 10;
     /* Gradiente suave solo en la franja inferior */
@@ -103,9 +104,12 @@ html, body {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    padding: 0.72em 2.8em;
-    border: 1px solid rgba(255, 255, 255, 0.38);
-    background: rgba(255, 255, 255, 0.07);
+    width: clamp(180px, 40vw, 260px);
+    padding: 0.82em 0;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(156, 76, 76, 0.85);
+    outline: none;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 2px;
@@ -123,32 +127,38 @@ html, body {
 
 .btn-continue:hover,
 .btn-continue:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(156, 76, 76, 1);
+    border-color: #fff;
+    color: #fff;
     outline: none;
 }
 
 /* ── Botón secundario: Volver a ver ── */
 .btn-replay {
-    margin-top: 1rem;
     font-family: 'Georgia', serif;
-    font-size: clamp(0.6rem, 1.8vw, 0.72rem);
-    letter-spacing: 0.14em;
-    color: rgba(255, 255, 255, 0.38);
-    background: none;
-    border: none;
+    font-size: clamp(0.6rem, 1.8vw, 0.75rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    width: clamp(140px, 30vw, 200px);
+    padding: 0.65em 0;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    outline: none;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 2px;
     cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: rgba(255, 255, 255, 0.18);
-    padding: 0.3em 0.8em;
-    transition: color 0.25s;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    transition: background 0.3s, border-color 0.3s;
 }
 
 .btn-replay:hover,
 .btn-replay:focus {
-    color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
     outline: none;
 }

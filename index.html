@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -8,23 +9,18 @@
     <title>Elizabeth & Gonzalo | 21/11/26 | Sevilla</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
     <div class="video-wrapper">
 
         <!-- Vídeo mobile (vertical) -->
-        <video id="introVideoMobile"
-               class="intro-video intro-video-mobile"
-               src="assets/videos/final_video_intro_sobre.mp4"
-               playsinline
-               preload="auto">
+        <video id="introVideoMobile" class="intro-video intro-video-mobile"
+            src="assets/videos/final_video_intro_sobre.mp4" playsinline preload="auto">
         </video>
 
         <!-- Vídeo tablet/desktop (horizontal) -->
-        <video id="introVideoDesktop"
-               class="intro-video intro-video-desktop"
-               src="assets/videos/intro_16_9_final_2.mp4"
-               playsinline
-               preload="auto">
+        <video id="introVideoDesktop" class="intro-video intro-video-desktop" src="assets/videos/intro_16_9_final.mp4"
+            playsinline preload="auto">
         </video>
 
         <!-- Overlay: pulsa para comenzar -->
@@ -39,53 +35,7 @@
         </div>
 
     </div>
-
-    <script>
-        const videoMobile  = document.getElementById('introVideoMobile');
-        const videoDesktop = document.getElementById('introVideoDesktop');
-        const startOvl     = document.getElementById('startOverlay');
-        const endOvl       = document.getElementById('endOverlay');
-        const replayBtn    = document.getElementById('replayBtn');
-
-        const mobileQuery = window.matchMedia('(max-width: 767px)');
-
-        function activeVideo() {
-            return mobileQuery.matches ? videoMobile : videoDesktop;
-        }
-
-        // Muestra el primer fotograma de cada vídeo en cuanto haya metadatos
-        [videoMobile, videoDesktop].forEach(v => {
-            v.addEventListener('loadedmetadata', () => {
-                v.currentTime = 0.001;
-            });
-            v.addEventListener('ended', () => {
-                endOvl.classList.remove('hidden');
-            });
-        });
-
-        function playVideo() {
-            const video = activeVideo();
-            video.muted = false;
-            video.currentTime = 0;
-            const p = video.play();
-            if (p !== undefined) {
-                p.catch(() => {
-                    // Fallback: algunos navegadores bloquean audio en el primer intento
-                    video.muted = true;
-                    video.play();
-                });
-            }
-        }
-
-        startOvl.addEventListener('click', () => {
-            startOvl.style.display = 'none';
-            playVideo();
-        });
-
-        replayBtn.addEventListener('click', () => {
-            endOvl.classList.add('hidden');
-            playVideo();
-        });
-    </script>
+    <script src="js/index.js"></script>
 </body>
+
 </html>
