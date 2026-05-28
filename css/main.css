@@ -50,6 +50,19 @@ section {
     z-index: 0;
 }
 
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, #fce4e0 0%, #fce4e0 40%, transparent 100%) top    / 100% clamp(12px, 6vw, 32px) no-repeat,
+        linear-gradient(to top,   #fce4e0 0%, #fce4e0 40%, transparent 100%) bottom / 100% clamp(12px, 6vw, 32px) no-repeat,
+        linear-gradient(to right, #fce4e0 0%, #fce4e0 40%, transparent 100%) left   / clamp(12px, 6vw, 32px) 100% no-repeat,
+        linear-gradient(to left,  #fce4e0 0%, #fce4e0 40%, transparent 100%) right  / clamp(12px, 6vw, 32px) 100% no-repeat;
+    z-index: 2;
+    pointer-events: none;
+}
+
 .hero > * {
     position: relative;
     z-index: 1;
@@ -98,19 +111,110 @@ section {
 
 /* Sección 2: Timeline */
 .timeline {
-    background: var(--surface-soft);
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(107, 46, 46, 0.10);
+    background: transparent;
 }
 
 .timeline h2,
 .form-section h2 {
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: 24px;
     font-size: clamp(1.6rem, 6vw, 2rem);
     line-height: 1.2;
     color: var(--primary-dark);
     letter-spacing: 0.02em;
+}
+
+/* ── Pasos del cronograma ── */
+.timeline-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (min-width: 600px) {
+    .timeline-steps {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+        overflow-x: auto;
+        padding-bottom: 6px;
+    }
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* Mobile: horizontal compacto */
+@media (max-width: 599px) {
+    .timeline-step {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .timeline-step .step-painting {
+        flex-shrink: 0;
+        width: 90px;
+        height: 112px;
+    }
+    .step-info {
+        align-items: flex-start !important;
+        text-align: left !important;
+        padding-top: 6px;
+    }
+}
+
+/* ── Cuadro / pintura ── */
+.step-painting {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 6px;
+    box-shadow:
+        0 0 0 4px #fdf8f8,
+        0 0 0 6px rgba(156, 76, 76, 0.30),
+        0 6px 20px rgba(107, 46, 46, 0.22);
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    /* Fondo mientras no hay imagen */
+    background: linear-gradient(160deg, #f8edec 0%, #e8d0cc 100%);
+}
+
+/* ── Info debajo del cuadro ── */
+.step-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+}
+
+.step-time {
+    font-family: Georgia, serif;
+    font-size: clamp(0.75rem, 2vw, 0.88rem);
+    font-weight: bold;
+    color: var(--primary);
+    letter-spacing: 0.08em;
+}
+
+.step-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: 0.02em;
+}
+
+.step-detail {
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    color: var(--text);
+    opacity: 0.7;
+    font-style: italic;
 }
 
 .closing h2 {
@@ -122,36 +226,10 @@ section {
     letter-spacing: 0.02em;
 }
 
-.timeline-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 18px;
-    padding: 16px;
-    background: var(--surface);
-    border-left: 4px solid var(--primary);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(107, 46, 46, 0.08);
-}
-
-.timeline-time {
-    font-weight: bold;
-    color: var(--primary-dark);
-    min-width: 0;
-    font-size: 1rem;
-}
-
-.timeline-content {
-    margin-left: 0;
-}
-
 /* Sección 3: Formulario */
 .form-section {
-    background: var(--surface);
-    border-radius: 14px;
-    box-shadow: 0 4px 24px rgba(107, 46, 46, 0.10);
+    background: transparent;
 }
-
 form {
     background: var(--surface-soft);
     padding: 18px 14px;
@@ -363,6 +441,18 @@ button:disabled {
     position: relative; /* ancla para el menú overlay */
 }
 
+/* Difuminado arriba y abajo: integra el slideshow con el fondo de la web */
+.hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom, #fce4e0 0%, #fce4e0 40%, transparent 100%) top / 100% clamp(12px, 6vw, 32px) no-repeat,
+        linear-gradient(to top,   #fce4e0 0%, #fce4e0 40%, transparent 100%) bottom / 100% clamp(12px, 6vw, 32px) no-repeat;
+    z-index: 5;
+    pointer-events: none;
+}
+
 .hero-img {
     width: 100%;
     height: auto;
@@ -410,14 +500,14 @@ button:disabled {
     z-index: 0;
 }
 
-/* Imagen principal: se muestra completa sin recorte */
+/* Imagen principal: rellena el contenedor sin margen */
 .hero-slideshow .slide img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: center;
+    object-fit: cover;
+    object-position: center top;
     z-index: 1;
 }
 
@@ -441,11 +531,14 @@ button:disabled {
     flex-direction: column;
     gap: 2px;
     pointer-events: none;
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 8px 13px;
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    color: rgba(156, 76, 76, 0.85);
+    background: rgba(255, 245, 240, 0.55);
+    border: 1px solid rgba(156, 76, 76, 0.25);
+    box-shadow: 0 2px 12px rgba(107, 46, 46, 0.15);
+    color: rgba(107, 46, 46, 0.95);
 }
 
 .hero-overlay-names {
@@ -581,29 +674,5 @@ button:disabled {
 .sections-grid {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-    .sections-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0 28px;
-        padding: 0 24px;
-        align-items: start;
-    }
-
-    /* Las secciones dentro del grid ocupan todo su espacio */
-    .sections-grid > section {
-        max-width: none;
-        margin: 0;
-        width: 100%;
-    }
-}
-
-@media (min-width: 1024px) {
-    .sections-grid {
-        gap: 0 40px;
-        padding: 0 40px;
-    }
 }
 
