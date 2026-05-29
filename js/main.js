@@ -184,6 +184,18 @@
             weddingRsvpForm.hidden = true;
             showFormStatus(FORM_SUCCESS_MESSAGE, false);
             resetSubmissionState();
+
+            // Ocultar mensaje y mostrar de nuevo el formulario tras 4 segundos
+            setTimeout(() => {
+                formStatus.hidden = true;
+                formStatus.classList.remove('is-success', 'is-error');
+                weddingRsvpForm.hidden = false;
+                // Restablecer visibilidad condicional: ocultar todos los grupos opcionales
+                weddingRsvpForm.querySelectorAll('.form-group--visible').forEach(function (el) {
+                    el.classList.remove('form-group--visible');
+                    el.classList.add('form-group--hidden');
+                });
+            }, 4000);
         });
 
         weddingRsvpForm.addEventListener('submit', (event) => {
@@ -227,6 +239,123 @@
             showFormStatus(FORM_ERROR_MESSAGE, true);
         });
     }
+})();
+
+/* ── Visibilidad condicional del formulario ── */
+(function () {
+    function show(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove('form-group--hidden');
+        el.classList.add('form-group--visible');
+    }
+    function hide(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove('form-group--visible');
+        el.classList.add('form-group--hidden');
+        // Limpiar valores al ocultar
+        el.querySelectorAll('input').forEach(function (inp) {
+            if (inp.type === 'radio' || inp.type === 'checkbox') {
+                inp.checked = false;
+            } else {
+                inp.value = '';
+            }
+        });
+    }
+
+    const gruposAsistencia = [
+        'group-acompanante', 'group-hijos',
+        'group-alergias', 'group-bus-ida', 'group-bus-vuelta',
+        'group-cancion', 'group-comentario'
+    ];
+
+    // Radios de asistencia
+    document.querySelectorAll('input[name="entry.877086558"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') {
+                gruposAsistencia.forEach(show);
+            } else {
+                gruposAsistencia.forEach(hide);
+                hide('group-nombre-acompanante');
+                hide('group-hijos-detalle');
+                hide('group-bus-vuelta-cual');
+            }
+        });
+    });
+
+    // Radios de acompañante
+    document.querySelectorAll('input[name="entry.1899259683"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') { show('group-nombre-acompanante'); }
+            else { hide('group-nombre-acompanante'); }
+        });
+    });
+
+    // Radios de hijos
+    document.querySelectorAll('input[name="entry.186004565"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') { show('group-hijos-detalle'); }
+            else { hide('group-hijos-detalle'); }
+        });
+    });
+
+    // Radios de bus de vuelta
+    document.querySelectorAll('input[name="entry.303435702"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') { show('group-bus-vuelta-cual'); }
+            else { hide('group-bus-vuelta-cual'); }
+        });
+    });
+
+    // Validación visual en campos requeridos
+    var form = document.getElementById('weddingRsvpForm');
+    if (!form) return;
+
+    function clearError(inputEl, errorId) {
+        inputEl.classList.remove('input--invalid');
+        var err = document.getElementById(errorId);
+        if (err) err.classList.remove('field-error--visible');
+    }
+
+    var inputNombre = document.getElementById('input-nombre');
+    if (inputNombre) {
+        inputNombre.addEventListener('input', function () { clearError(this, 'error-nombre'); });
+    }
+
+    document.querySelectorAll('input[name="entry.877086558"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            var err = document.getElementById('error-asistencia');
+            if (err) err.classList.remove('field-error--visible');
+        });
+    });
+
+    form.addEventListener('submit', function (e) {
+        var valid = true;
+
+        // Validar nombre
+        if (inputNombre && !inputNombre.value.trim()) {
+            inputNombre.classList.add('input--invalid');
+            var errNombre = document.getElementById('error-nombre');
+            if (errNombre) errNombre.classList.add('field-error--visible');
+            valid = false;
+        }
+
+        // Validar asistencia
+        var asistenciaSeleccionada = form.querySelector('input[name="entry.877086558"]:checked');
+        if (!asistenciaSeleccionada) {
+            var errAsistencia = document.getElementById('error-asistencia');
+            if (errAsistencia) errAsistencia.classList.add('field-error--visible');
+            valid = false;
+        }
+
+        if (!valid) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var primerError = form.querySelector('.input--invalid, .field-error--visible');
+            if (primerError) primerError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, true); // capture: true para ejecutar antes del listener existente
 })();
 
 /* ── Menú de navegación (sección 0) ── */
@@ -276,4 +405,33 @@
         current = (current + 1) % slides.length;
         slides[current].classList.add('active');
     }, 3000);
+})();
+
+/* ── Scroll reveal con IntersectionObserver ── */
+(function () {
+    if (!('IntersectionObserver' in window)) {
+        // Fallback: mostrar todo de golpe si no hay soporte
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(function (el) {
+            el.classList.add('is-visible');
+        });
+        return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            } else {
+                // Quitar la clase al salir para que vuelva a animar al hacer scroll de vuelta
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function (el) {
+        observer.observe(el);
+    });
 })();

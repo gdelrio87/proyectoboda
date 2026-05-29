@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda de Elizabeth y Gonzalo</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%239c4c4c'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2C serif' font-size='22' font-style='italic' fill='white'%3EE%26amp%3BG%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
     <!-- Sección 0: Imagen principal -->
     <section class="hero-image">
+
+        <!-- Botón de confirmación directa -->
+        <a class="confirm-shortcut" href="#confirmacion">Confirmar asistencia</a>
 
         <!-- Botón de menú -->
         <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
@@ -25,6 +29,7 @@
                 <li><a href="#cronograma">Cronograma</a></li>
                 <li><a href="#confirmacion">Confirmar Asistencia</a></li>
                 <li><a href="#regalo">Regalo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
 
@@ -45,16 +50,16 @@
         </div>
 
         <!-- Texto superpuesto esquina superior izquierda -->
-        <div class="hero-text-overlay">
+        <a href="#" class="hero-text-overlay" aria-label="Ir al inicio">
             <span class="hero-overlay-names">Elizabeth &amp; Gonzalo</span>
             <span class="hero-overlay-date">21 · 11 · 2026</span>
             <span class="hero-overlay-place">Sevilla</span>
-        </div>
+        </a>
     </section>
 
     <!-- Sección 1: Héroe con Countdown -->
     <section class="hero" id="countdown">
-        <div class="countdown">
+        <div class="countdown reveal-stagger">
             <div class="countdown-item">
                 <div id="months">0</div>
                 <small>Meses</small>
@@ -82,74 +87,154 @@
     <div class="sections-grid">
 
     <!-- Sección 2: Timeline -->
-    <section class="timeline" id="cronograma">
-        <div class="timeline-steps">
+    <section class="timeline reveal" id="cronograma">
 
-            <div class="timeline-step">
-                <img class="step-painting" src="assets/images/cronograma-ceremonia.jpg" alt="Ceremonia">
-                <div class="step-info">
-                    <span class="step-time">12:00</span>
-                    <strong class="step-title">Ceremonia</strong>
-                    <span class="step-detail">Iglesia de los Terceros</span>
+        <!-- Grupo 1: Iglesia de los Terceros -->
+        <div class="timeline-group">
+            <div class="timeline-group-header reveal reveal--left">
+                <span class="timeline-group-location">Iglesia de los Terceros · Sevilla</span>
+            </div>
+            <div class="timeline-steps reveal-stagger">
+                <div class="timeline-step">
+                    <img class="step-painting" src="assets/images/cronograma-ceremonia.jpg" alt="Ceremonia">
+                    <div class="step-info">
+                        <span class="step-time">12:00</span>
+                        <strong class="step-title">Ceremonia</strong>
+                    </div>
                 </div>
             </div>
-
-            <div class="timeline-step">
-                <img class="step-painting" src="assets/images/cronograma-coctel.jpg" alt="Cóctel">
-                <div class="step-info">
-                    <span class="step-time">14:30</span>
-                    <strong class="step-title">Cóctel</strong>
-                    <span class="step-detail">Hacienda Al-Baraka</span>
-                </div>
-            </div>
-
-            <div class="timeline-step">
-                <img class="step-painting" src="assets/images/cronograma-comida.jpg" alt="Comida">
-                <div class="step-info">
-                    <span class="step-time">16:30</span>
-                    <strong class="step-title">Comida</strong>
-                    <span class="step-detail">Hacienda Al-Baraka</span>
-                    <span class="step-detail">&nbsp;</span>
-                </div>
-            </div>
-
-            <div class="timeline-step">
-                <img class="step-painting" src="assets/images/cronograma-fiesta.jpg" alt="Inicio de la Fiesta">
-                <div class="step-info">
-                    <span class="step-time">18:30</span>
-                    <strong class="step-title">Inicio de la Fiesta</strong>
-                    <span class="step-detail">Hacienda Al-Baraka</span>
-                    <span class="step-detail">&nbsp;</span>
-                </div>
-            </div>
-
-            <div class="timeline-step">
-                <img class="step-painting" src="assets/images/cronograma-fin.jpg" alt="Fin de la Fiesta">
-                <div class="step-info">
-                    <span class="step-time">23:30 – 00:30</span>
-                    <strong class="step-title">Fin de la Fiesta</strong>
-                    <span class="step-detail">Hacienda Al-Baraka</span>
-                    <span class="step-detail">&nbsp;</span>
-                </div>
-            </div>
-
         </div>
+
+        <!-- Grupo 2: Hacienda Al-Baraka -->
+        <div class="timeline-group">
+            <div class="timeline-group-header reveal reveal--left">
+                <span class="timeline-group-location">Hacienda Al-Baraka - Alcálá de Guadaíra</span>
+            </div>
+            <div class="timeline-steps reveal-stagger">
+                <div class="timeline-step">
+                    <img class="step-painting" src="assets/images/cronograma-coctel.jpg" alt="Cóctel">
+                    <div class="step-info">
+                        <span class="step-time">14:30</span>
+                        <strong class="step-title">Cóctel</strong>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <img class="step-painting" src="assets/images/cronograma-comida.jpg" alt="Comida">
+                    <div class="step-info">
+                        <span class="step-time">16:30</span>
+                        <strong class="step-title">Recibimiento y banquete</strong>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <img class="step-painting" src="assets/images/cronograma-fiesta.jpg" alt="Fiesta con barra libre">
+                    <div class="step-info">
+                        <span class="step-time">18:30</span>
+                        <strong class="step-title">Fiesta con barra libre</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- Sección 3: Formulario -->
-    <section class="form-section" id="confirmacion">
-            <summary><h2>Confirma tu Asistencia</h2></summary>
-         
-        <form id="weddingRsvpForm" name="wedding-rsvp" action="https://docs.google.com/forms/d/e/1FAIpQLScknFhrSgY9l_ARf3i2K1pUocwlVXobr12HmDrmP2iJKg0fHQ/formResponse" method="POST" target="google-form-response-frame">
-            
-            <div class="form-group">
-                <label>¿Asistirás a la boda?</label>
+    <section class="form-section reveal" id="confirmacion">
+        <h2 class="form-section__title">Confirmar Asistencia</h2>
+        <p class="form-section__subtitle">Nos haría muchísima ilusión contar con vosotros en este día tan especial. Para poder organizar cada detalle con el cariño que merece <strong>necesitamos que confirméis vuestra asistencia antes del 24 de Septiembre.</strong></p>
+
+        <form id="weddingRsvpForm" name="wedding-rsvp" action="https://docs.google.com/forms/d/e/1FAIpQLScknFhrSgY9l_ARf3i2K1pUocwlVXobr12HmDrmP2iJKg0fHQ/formResponse" method="POST" target="google-form-response-frame" novalidate>
+
+            <!-- Siempre visible: nombre -->
+            <div class="form-group" id="group-nombre">
+                <label for="input-nombre">Nombre completo <span class="required-mark">*</span></label>
+                <input type="text" id="input-nombre" name="entry.1377299420" required autocomplete="name">
+                <span class="field-error" id="error-nombre">Este campo es obligatorio</span>
+            </div>
+
+            <!-- Siempre visible: asistencia -->
+            <div class="form-group" id="group-asistencia">
+                <label>¿Asistirás a la boda? <span class="required-mark">*</span></label>
                 <div class="radio-group">
-                    <label><input type="radio" name="entry.877086558" value="Sí" required> Sí, allí estaré</label>
-                    <label><input type="radio" name="entry.877086558" value="No" required> No, me es imposible</label>
+                    <label><input type="radio" name="entry.877086558" value="Sí" id="asistencia-si" required> Sí, allí estaré</label>
+                    <label><input type="radio" name="entry.877086558" value="No" id="asistencia-no"> No, me es imposible</label>
+                </div>
+                <span class="field-error" id="error-asistencia">Este campo es obligatorio</span>
+            </div>
+
+            <!-- Visible si asistencia = Sí -->
+            <div class="form-group form-group--hidden" id="group-acompanante">
+                <label>¿Vienes con acompañante?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="entry.1899259683" value="Sí" id="acompanante-si"> Sí</label>
+                    <label><input type="radio" name="entry.1899259683" value="No" id="acompanante-no"> No</label>
                 </div>
             </div>
-            <button id="weddingRsvpSubmit" type="submit">Enviar Confirmación</button>
+
+            <!-- Visible si acompañante = Sí -->
+            <div class="form-group form-group--hidden" id="group-nombre-acompanante">
+                <label for="input-nombre-acompanante">Nombre completo del/de la acompañante</label>
+                <input type="text" id="input-nombre-acompanante" name="entry.1911705945" autocomplete="off">
+            </div>
+
+            <!-- Visible si asistencia = Sí -->
+            <div class="form-group form-group--hidden" id="group-hijos">
+                <label>¿Vienes con hijos?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="entry.186004565" value="Sí" id="hijos-si"> Sí</label>
+                    <label><input type="radio" name="entry.186004565" value="No" id="hijos-no"> No</label>
+                </div>
+            </div>
+
+            <!-- Visible si hijos = Sí -->
+            <div class="form-group form-group--hidden" id="group-hijos-detalle">
+                <label for="input-hijos-detalle">Número de niños, edad y menú infantil</label>
+                <input type="text" id="input-hijos-detalle" name="entry.167933810" autocomplete="off">
+            </div>
+
+            <!-- Visible si asistencia = Sí -->
+            <div class="form-group form-group--hidden" id="group-alergias">
+                <label for="input-alergias">¿Tienes alguna alergia, intolerancia o restricción alimentaria? <span class="label-hint">Incluye también a tu acompañante si aplica</span></label>
+                <input type="text" id="input-alergias" name="entry.1585004093" autocomplete="off">
+            </div>
+
+            <div class="form-group form-group--hidden" id="group-bus-ida">
+                <label>¿Necesitarás autobús de ida?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="entry.1679883743" value="Sí"> Sí</label>
+                    <label><input type="radio" name="entry.1679883743" value="No"> No</label>
+                </div>
+            </div>
+
+            <div class="form-group form-group--hidden" id="group-bus-vuelta">
+                <label>¿Necesitarás autobús de vuelta?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="entry.303435702" value="Sí" id="bus-vuelta-si"> Sí</label>
+                    <label><input type="radio" name="entry.303435702" value="No" id="bus-vuelta-no"> No</label>
+                </div>
+            </div>
+
+            <!-- Visible si bus vuelta = Sí -->
+            <div class="form-group form-group--hidden" id="group-bus-vuelta-cual">
+                <label>¿Qué autobús de vuelta cogerás?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="entry.595612430" value="El primero, dos horas después del baile nupcial"> El primero, dos horas después del baile nupcial</label>
+                    <label><input type="radio" name="entry.595612430" value="El segundo, me quedaré hasta el final de la fiesta"> El segundo, me quedaré hasta el final de la fiesta</label>
+                </div>
+            </div>
+
+            <div class="form-group form-group--hidden" id="group-cancion">
+                <label for="input-cancion">La canción que no puede faltar ese día</label>
+                <input type="text" id="input-cancion" name="entry.1537385872" autocomplete="off">
+            </div>
+
+            <div class="form-group form-group--hidden" id="group-comentario">
+                <label for="input-comentario">¿Algún comentario para los novios?</label>
+                <input type="text" id="input-comentario" name="entry.750000412" autocomplete="off">
+            </div>
+
+            <button id="weddingRsvpSubmit" type="submit">Confirmar asistencia</button>
         </form>
         <p id="formStatus" class="form-status" hidden aria-live="polite"></p>
         <iframe name="google-form-response-frame" id="googleFormResponseFrame" class="form-response-frame" title="Respuesta del formulario"></iframe>
@@ -158,11 +243,23 @@
     </div><!-- /sections-grid -->
 
     <!-- Sección 4: Cierre -->
-    <section class="closing" id="regalo">
-        <h2>¡Estamos felices de que vengas!</h2>
-        <p>Si nos quisieras hacer un regalo, puedes hacerlo al siguiente número de cuenta:</p>
-        <div class="account-info">
-            XXXXX-XXXXX-XXXX-XXXXX
+    <section id="regalo" class="reveal">
+        <p class="form-section__subtitle">Que nos acompañéis es el único regalo que necesitamos. Pero, si queréis hacernos una aportación extra para empezar esta aventura, os lo agradeceremos infinito.</p>
+        <p class="form-section__subtitle">XXXX-XXXX-XXXX-XXXX-XXXX</p>
+    </section>
+
+    <!-- Sección 5: Contacto -->
+    <section class="contact-sectionm reveal" id="contacto">
+        <p class="contact-intro">Si tienes cualquier duda o necesitas ponerte en contacto con nosotros, aquí nos tienes.</p>
+        <div class="contact-cards reveal-stagger">
+            <div class="contact-card">
+                <span class="contact-name">Elizabeth</span>
+                <a class="contact-phone" href="tel:+34617080757">+34 617 080 757</a>
+            </div>
+            <div class="contact-card">
+                <span class="contact-name">Gonzalo</span>
+                <a class="contact-phone" href="tel:+34652184672">+34 652 184 672</a>
+            </div>
         </div>
     </section>
     <script src="js/main.js"></script>
