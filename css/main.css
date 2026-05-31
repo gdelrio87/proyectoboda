@@ -473,11 +473,47 @@ form {
     border: none;
 }
 
+.form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+}
+
+.form-fieldset__legend {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    opacity: 0.7;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+}
+
+.form-fieldset__legend::before,
+.form-fieldset__legend::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--primary);
+    opacity: 0.25;
+}
+
 .form-group {
     margin-bottom: 24px;
 }
 
 .form-group--hidden {
+    display: none;
+}
+
+.form-fieldset--hidden {
     display: none;
 }
 
@@ -1013,5 +1049,22 @@ button:disabled {
 .sections-grid {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    /* Igualar ancho de título/subtítulo del formulario al del propio form */
+    .form-section__subtitle {
+        max-width: none;
+    }
+
+    /* Regalo y Contacto: mismo ancho que la columna del formulario */
+    #regalo,
+    #contacto {
+        max-width: 700px;
+    }
+
+    .contact-intro {
+        max-width: none;
+    }
 }
 

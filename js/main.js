@@ -195,6 +195,11 @@
                     el.classList.remove('form-group--visible');
                     el.classList.add('form-group--hidden');
                 });
+                // Ocultar fieldsets condicionales
+                ['fieldset-comida', 'fieldset-transporte', 'fieldset-adicionales'].forEach(function (id) {
+                    var fs = document.getElementById(id);
+                    if (fs) fs.classList.add('form-fieldset--hidden');
+                });
             }, 4000);
         });
 
@@ -263,23 +268,36 @@
             }
         });
     }
+    function showFieldset(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove('form-fieldset--hidden');
+    }
+    function hideFieldset(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('form-fieldset--hidden');
+    }
 
     const gruposAsistencia = [
         'group-acompanante', 'group-hijos',
-        'group-alergias', 'group-bus-ida', 'group-bus-vuelta',
+        'group-alergias', 'group-vegano', 'group-bus-ida', 'group-bus-vuelta',
         'group-cancion', 'group-comentario'
     ];
+    const fieldsetsAsistencia = ['fieldset-comida', 'fieldset-transporte', 'fieldset-adicionales'];
 
     // Radios de asistencia
     document.querySelectorAll('input[name="entry.877086558"]').forEach(function (radio) {
         radio.addEventListener('change', function () {
             if (this.value === 'Sí') {
                 gruposAsistencia.forEach(show);
+                fieldsetsAsistencia.forEach(showFieldset);
             } else {
                 gruposAsistencia.forEach(hide);
                 hide('group-nombre-acompanante');
                 hide('group-hijos-detalle');
                 hide('group-bus-vuelta-cual');
+                fieldsetsAsistencia.forEach(hideFieldset);
             }
         });
     });

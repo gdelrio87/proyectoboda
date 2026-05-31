@@ -31,7 +31,6 @@
                 <li><a href="#countdown">Cuenta Atrás</a></li>
                 <li><a href="#cronograma">Cronograma</a></li>
                 <li><a href="#confirmacion">Confirmar Asistencia</a></li>
-                <li><a href="#regalo">Regalo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -178,100 +177,131 @@
                 action="https://docs.google.com/forms/d/e/1FAIpQLScknFhrSgY9l_ARf3i2K1pUocwlVXobr12HmDrmP2iJKg0fHQ/formResponse"
                 method="POST" target="google-form-response-frame" novalidate>
 
-                <!-- Siempre visible: nombre -->
-                <div class="form-group" id="group-nombre">
-                    <label for="input-nombre">Nombre completo <span class="required-mark">*</span></label>
-                    <input type="text" id="input-nombre" name="entry.1377299420" required autocomplete="name">
-                    <span class="field-error" id="error-nombre">Este campo es obligatorio</span>
-                </div>
+                <!-- Grupo 1: Datos Personales -->
+                <fieldset class="form-fieldset" id="fieldset-datos-personales">
+                    <legend class="form-fieldset__legend">Datos Personales</legend>
 
-                <!-- Siempre visible: asistencia -->
-                <div class="form-group" id="group-asistencia">
-                    <label>¿Asistirás a la boda? <span class="required-mark">*</span></label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="entry.877086558" value="Sí" id="asistencia-si" required> Sí,
-                            allí estaré</label>
-                        <label><input type="radio" name="entry.877086558" value="No" id="asistencia-no"> No, me es
-                            imposible</label>
+                    <!-- Siempre visible: nombre -->
+                    <div class="form-group" id="group-nombre">
+                        <label for="input-nombre">Nombre completo <span class="required-mark">*</span></label>
+                        <input type="text" id="input-nombre" name="entry.1377299420" required autocomplete="name">
+                        <span class="field-error" id="error-nombre">Este campo es obligatorio</span>
                     </div>
-                    <span class="field-error" id="error-asistencia">Este campo es obligatorio</span>
-                </div>
 
-                <!-- Visible si asistencia = Sí -->
-                <div class="form-group form-group--hidden" id="group-acompanante">
-                    <label>¿Vienes con acompañante?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="entry.1899259683" value="Sí" id="acompanante-si"> Sí</label>
-                        <label><input type="radio" name="entry.1899259683" value="No" id="acompanante-no"> No</label>
+                    <!-- Siempre visible: asistencia -->
+                    <div class="form-group" id="group-asistencia">
+                        <label>¿Asistirás a la boda? <span class="required-mark">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="entry.877086558" value="Sí" id="asistencia-si" required> Sí,
+                                allí estaré</label>
+                            <label><input type="radio" name="entry.877086558" value="No" id="asistencia-no"> No, me es
+                                imposible</label>
+                        </div>
+                        <span class="field-error" id="error-asistencia">Este campo es obligatorio</span>
                     </div>
-                </div>
 
-                <!-- Visible si acompañante = Sí -->
-                <div class="form-group form-group--hidden" id="group-nombre-acompanante">
-                    <label for="input-nombre-acompanante">Nombre completo del/de la acompañante</label>
-                    <input type="text" id="input-nombre-acompanante" name="entry.1911705945" autocomplete="off">
-                </div>
-
-                <!-- Visible si asistencia = Sí -->
-                <div class="form-group form-group--hidden" id="group-hijos">
-                    <label>¿Vienes con hijos?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="entry.186004565" value="Sí" id="hijos-si"> Sí</label>
-                        <label><input type="radio" name="entry.186004565" value="No" id="hijos-no"> No</label>
+                    <!-- Visible si asistencia = Sí -->
+                    <div class="form-group form-group--hidden" id="group-acompanante">
+                        <label>¿Vienes con acompañante?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="entry.1899259683" value="Sí" id="acompanante-si"> Sí</label>
+                            <label><input type="radio" name="entry.1899259683" value="No" id="acompanante-no"> No</label>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Visible si hijos = Sí -->
-                <div class="form-group form-group--hidden" id="group-hijos-detalle">
-                    <label for="input-hijos-detalle">Número de niños, edad y menú infantil</label>
-                    <input type="text" id="input-hijos-detalle" name="entry.167933810" autocomplete="off">
-                </div>
-
-                <!-- Visible si asistencia = Sí -->
-                <div class="form-group form-group--hidden" id="group-alergias">
-                    <label for="input-alergias">¿Tienes alguna alergia, intolerancia o restricción alimentaria? <span
-                            class="label-hint">Incluye también a tu acompañante si aplica</span></label>
-                    <input type="text" id="input-alergias" name="entry.1585004093" autocomplete="off">
-                </div>
-
-                <div class="form-group form-group--hidden" id="group-bus-ida">
-                    <label>¿Necesitarás autobús de ida?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="entry.1679883743" value="Sí"> Sí</label>
-                        <label><input type="radio" name="entry.1679883743" value="No"> No</label>
+                    <!-- Visible si acompañante = Sí -->
+                    <div class="form-group form-group--hidden" id="group-nombre-acompanante">
+                        <label for="input-nombre-acompanante">Nombre completo del/de la acompañante</label>
+                        <input type="text" id="input-nombre-acompanante" name="entry.1911705945" autocomplete="off">
                     </div>
-                </div>
 
-                <div class="form-group form-group--hidden" id="group-bus-vuelta">
-                    <label>¿Necesitarás autobús de vuelta?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="entry.303435702" value="Sí" id="bus-vuelta-si"> Sí</label>
-                        <label><input type="radio" name="entry.303435702" value="No" id="bus-vuelta-no"> No</label>
+                    <!-- Visible si asistencia = Sí -->
+                    <div class="form-group form-group--hidden" id="group-hijos">
+                        <label>¿Vienes con hijos?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="entry.186004565" value="Sí" id="hijos-si"> Sí</label>
+                            <label><input type="radio" name="entry.186004565" value="No" id="hijos-no"> No</label>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Visible si bus vuelta = Sí -->
-                <div class="form-group form-group--hidden" id="group-bus-vuelta-cual">
-                    <label>¿Qué autobús de vuelta cogerás?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="entry.595612430"
-                                value="El primero, dos horas después del baile nupcial"> El primero, dos horas después
-                            del baile nupcial</label>
-                        <label><input type="radio" name="entry.595612430"
-                                value="El segundo, me quedaré hasta el final de la fiesta"> El segundo, me quedaré hasta
-                            el final de la fiesta</label>
+                    <!-- Visible si hijos = Sí -->
+                    <div class="form-group form-group--hidden" id="group-hijos-detalle">
+                        <label for="input-hijos-detalle">Número de niños, edad y menú infantil</label>
+                        <input type="text" id="input-hijos-detalle" name="entry.167933810" autocomplete="off">
                     </div>
-                </div>
 
-                <div class="form-group form-group--hidden" id="group-cancion">
-                    <label for="input-cancion">La canción que no puede faltar ese día</label>
-                    <input type="text" id="input-cancion" name="entry.1537385872" autocomplete="off">
-                </div>
+                </fieldset>
 
-                <div class="form-group form-group--hidden" id="group-comentario">
-                    <label for="input-comentario">¿Algún comentario para los novios?</label>
-                    <input type="text" id="input-comentario" name="entry.750000412" autocomplete="off">
-                </div>
+                <!-- Grupo 2: Comida -->
+                <fieldset class="form-fieldset form-fieldset--hidden" id="fieldset-comida">
+                    <legend class="form-fieldset__legend">Comida</legend>
+
+                    <!-- Visible si asistencia = Sí -->
+                    <div class="form-group form-group--hidden" id="group-alergias">
+                        <label for="input-alergias">¿Eres celíaco, tienes alguna alergia, intolerancia o restricción alimenticia? <span
+                                class="label-hint">Incluye también a tu acompañante si aplica</span></label>
+                        <input type="text" id="input-alergias" name="entry.1585004093" autocomplete="off">
+                    </div>
+
+                    <!-- Visible si asistencia = Sí -->
+                    <div class="form-group form-group--hidden" id="group-vegano">
+                        <label for="input-vegano">¿Eres vegano o vegetariano? <span
+                                class="label-hint">Incluye también a tu acompañante si aplica</span></label>
+                        <input type="text" id="input-vegano" name="entry.995815532" autocomplete="off">
+                    </div>
+
+                </fieldset>
+
+                <!-- Grupo 3: Transporte -->
+                <fieldset class="form-fieldset form-fieldset--hidden" id="fieldset-transporte">
+                    <legend class="form-fieldset__legend">Transporte</legend>
+
+                    <div class="form-group form-group--hidden" id="group-bus-ida">
+                        <label>¿Necesitarás autobús de ida?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="entry.1679883743" value="Sí"> Sí</label>
+                            <label><input type="radio" name="entry.1679883743" value="No"> No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group--hidden" id="group-bus-vuelta">
+                        <label>¿Necesitarás autobús de vuelta?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="entry.303435702" value="Sí" id="bus-vuelta-si"> Sí</label>
+                            <label><input type="radio" name="entry.303435702" value="No" id="bus-vuelta-no"> No</label>
+                        </div>
+                    </div>
+
+                    <!-- Visible si bus vuelta = Sí -->
+                    <div class="form-group form-group--hidden" id="group-bus-vuelta-cual">
+                        <label>¿Qué autobús de vuelta cogerás?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="entry.595612430"
+                                    value="El primero, dos horas después del baile nupcial"> El primero, dos horas después
+                                del baile nupcial</label>
+                            <label><input type="radio" name="entry.595612430"
+                                    value="El segundo, me quedaré hasta el final de la fiesta"> El segundo, me quedaré hasta
+                                el final de la fiesta</label>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <!-- Grupo 4: Adicionales -->
+                <fieldset class="form-fieldset form-fieldset--hidden" id="fieldset-adicionales">
+                    <legend class="form-fieldset__legend">Datos Adicionales</legend>
+
+                    <div class="form-group form-group--hidden" id="group-cancion">
+                        <label for="input-cancion">La canción que no puede faltar ese día</label>
+                        <input type="text" id="input-cancion" name="entry.1537385872" autocomplete="off">
+                    </div>
+
+                    <div class="form-group form-group--hidden" id="group-comentario">
+                        <label for="input-comentario">¿Algún comentario para los novios?</label>
+                        <input type="text" id="input-comentario" name="entry.750000412" autocomplete="off">
+                    </div>
+
+                </fieldset>
 
                 <button id="weddingRsvpSubmit" type="submit">Confirmar asistencia</button>
             </form>
