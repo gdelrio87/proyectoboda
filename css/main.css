@@ -176,7 +176,7 @@ section {
 .form-section h2 {
     text-align: center;
     margin-bottom: 24px;
-    font-size: clamp(1.6rem, 6vw, 2rem);
+    font-size: clamp(1.3rem, 4vw, 1.4rem);
     line-height: 1.2;
     color: var(--primary-dark);
     letter-spacing: 0.02em;
@@ -443,7 +443,7 @@ section {
 .form-section__title {
     text-align: center;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-size: clamp(1.2rem, 3.5vw, 1.3rem);
     font-style: italic;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -920,24 +920,36 @@ button:disabled {
     font-size: 0.95rem;
     font-style: italic;
     letter-spacing: 0.12em;
-    color: var(--primary-dark);
-    background: rgba(253, 248, 248, 0.92);
-    border: 1px solid rgba(156, 76, 76, 0.35);
+    color: #fff;
+    background: var(--primary);
+    border: 1px solid var(--primary-dark);
     border-radius: 20px;
     text-decoration: none;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 2px 10px rgba(107, 46, 46, 0.15);
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px rgba(107, 46, 46, 0.25);
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     white-space: nowrap;
 }
 
 .confirm-shortcut:hover,
 .confirm-shortcut:focus {
-    background: var(--primary);
-    color: #fff;
+    background: #fff;
+    color: var(--primary-dark);
+    border-color: var(--primary-dark);
     box-shadow: 0 4px 14px rgba(107, 46, 46, 0.28);
     outline: none;
+}
+
+/* Mobile: botón centrado en el hueco entre sección 0 y sección 1 */
+@media (max-width: 767px) {
+    .confirm-shortcut {
+        top: auto;
+        right: 50%;
+        bottom: 0;
+        transform: translateX(50%) translateY(95%);
+        z-index: 10;
+    }
 }
 
 /* ── Botón hamburger ── */
@@ -1044,6 +1056,19 @@ button:disabled {
     outline: none;
 }
 
+/* Evitar solape con el bloque fijo superior izquierdo en móvil */
+@media (max-width: 767px) {
+    .hero-nav {
+        /* Deja margen suficiente para el overlay izquierdo (~175px) + gap */
+        max-width: calc(100vw - 195px);
+        min-width: 130px;
+    }
+    .hero-nav a {
+        white-space: normal;
+        overflow-wrap: break-word;
+        line-height: 1.5;
+    }
+}
 
 /* ── Grid de secciones (tablet/desktop) ── */
 .sections-grid {
