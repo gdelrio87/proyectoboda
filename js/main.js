@@ -425,6 +425,48 @@
     }, 3000);
 })();
 
+/* ── Lightbox para imágenes del cronograma ── */
+(function () {
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Imagen ampliada');
+
+    const img = document.createElement('img');
+    img.alt = '';
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+
+    function open(src, alt) {
+        img.src = src;
+        img.alt = alt || '';
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+        // Limpiar src tras la transición para liberar memoria
+        setTimeout(function () { img.src = ''; }, 300);
+    }
+
+    overlay.addEventListener('click', close);
+
+    document.querySelectorAll('.step-painting').forEach(function (painting) {
+        painting.addEventListener('click', function () {
+            open(this.src || this.currentSrc, this.alt);
+        });
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+            close();
+        }
+    });
+})();
+
 /* ── Scroll reveal con IntersectionObserver ── */
 (function () {
     if (!('IntersectionObserver' in window)) {
