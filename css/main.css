@@ -1394,3 +1394,191 @@ button:disabled {
     border: 1.5px solid var(--primary);
     color: var(--primary);
 }
+
+
+/* ── Sección Lugares ── */
+.venues-section {
+    max-width: 900px;
+}
+
+/* Tarjeta de lugar */
+.venue-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 52px;
+    background: rgba(253, 248, 248, 0.6);
+    border: 1px solid rgba(156, 76, 76, 0.15);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(107, 46, 46, 0.09);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.venue-card:last-child {
+    margin-bottom: 0;
+}
+
+@media (min-width: 680px) {
+    .venue-card {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    /* Versión invertida: imagen a la derecha */
+    .venue-card--reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+/* Imagen */
+.venue-card__img-wrap {
+    flex: 0 0 min(280px, 42%);
+    overflow: hidden;
+    background: linear-gradient(160deg, #f8edec 0%, #e8d0cc 100%);
+}
+
+.venue-card__img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.venue-card:hover .venue-card__img {
+    transform: scale(1.04);
+}
+
+/* Cuerpo */
+.venue-card__body {
+    flex: 1;
+    padding: 24px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.venue-card__name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.25rem, 3.8vw, 1.55rem);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.venue-card__address {
+    font-family: Georgia, serif;
+    font-size: clamp(0.78rem, 2vw, 0.88rem);
+    color: var(--primary);
+    letter-spacing: 0.04em;
+    margin: 0;
+}
+
+.venue-card__desc {
+    font-family: Georgia, serif;
+    font-size: clamp(0.88rem, 2.3vw, 0.96rem);
+    font-style: italic;
+    color: var(--text);
+    opacity: 0.78;
+    line-height: 1.65;
+    margin: 4px 0 8px;
+}
+
+/* Separador */
+.venue-card__transport {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(156, 76, 76, 0.15);
+}
+
+/* Fila de transporte */
+.venue-transport-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.venue-transport-item__icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(156, 76, 76, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    margin-top: 1px;
+}
+
+.venue-transport-item__icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.venue-transport-item__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: Georgia, serif;
+    font-size: clamp(0.82rem, 2.1vw, 0.9rem);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.venue-transport-item__text strong {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(0.9rem, 2.4vw, 1rem);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: 0.02em;
+}
+
+.venue-transport-item__text a {
+    color: var(--primary);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Botón mapa */
+.venue-card__map-btn {
+    display: inline-block;
+    margin-top: 6px;
+    align-self: flex-start;
+    padding: 8px 18px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: var(--primary);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(107, 46, 46, 0.22);
+}
+
+.venue-card__map-btn:hover,
+.venue-card__map-btn:focus {
+    background: var(--primary-dark);
+    box-shadow: 0 4px 14px rgba(107, 46, 46, 0.32);
+    outline: none;
+}
+
+/* Placeholder mientras no hay imagen */
+.venue-card__img-wrap:not(:has(img[src$=".jpg"])):not(:has(img[src$=".jpeg"])):not(:has(img[src$=".png"])) {
+    min-height: 220px;
+}
+
