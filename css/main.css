@@ -100,7 +100,7 @@ a {
 /* Sección 1: Titular y Countdown */
 .hero {
     text-align: center;
-    background: url('../assets/images/sobre_abierto.png') center center / cover no-repeat;
+    background: url('../assets/images/sobre_abierto.jpg') center center / cover no-repeat;
     color: #9c4c4c;
     padding: 56px px;
     position: relative;
