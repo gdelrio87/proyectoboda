@@ -495,3 +495,28 @@
         observer.observe(el);
     });
 })();
+
+/* ── Fix posición elementos fixed en móvil (iOS Safari / Chrome dynamic toolbar) ──
+   Cuando la barra de URL del navegador aparece o desaparece durante el scroll,
+   el visualViewport.offsetTop cambia y los elementos fixed saltan.
+   Compensamos manualmente ese desplazamiento. ── */
+(function () {
+    if (!window.visualViewport) return;
+
+    var overlay  = document.querySelector('.hero-text-overlay');
+    var toggle   = document.getElementById('navToggle');
+    var nav      = document.getElementById('heroNav');
+
+    var BASE_TOP     = 14;   // px desde el borde superior
+    var NAV_OFFSET   = 60;   // px desde el borde superior para el menú desplegado
+
+    function reposition() {
+        var offsetY = window.visualViewport.offsetTop;
+        if (overlay) overlay.style.top = (offsetY + BASE_TOP) + 'px';
+        if (toggle)  toggle.style.top  = (offsetY + BASE_TOP) + 'px';
+        if (nav)     nav.style.top     = (offsetY + NAV_OFFSET) + 'px';
+    }
+
+    window.visualViewport.addEventListener('scroll', reposition);
+    window.visualViewport.addEventListener('resize', reposition);
+})();

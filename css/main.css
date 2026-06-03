@@ -920,9 +920,10 @@ button:disabled {
 /* ── Texto superpuesto en imagen principal ── */
 .hero-text-overlay {
     position: fixed;
-    top: 14px;
+    top: calc(env(safe-area-inset-top, 0px) + 14px);
     left: 14px;
     z-index: 30;
+    will-change: top;
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -1017,9 +1018,10 @@ button:disabled {
 /* ── Botón hamburger ── */
 .nav-toggle {
     position: fixed;
-    top: 14px;
+    top: calc(env(safe-area-inset-top, 0px) + 14px);
     right: 14px;
     z-index: 30;
+    will-change: top;
     width: auto;        /* anula el width:100% del button global */
     min-height: auto;   /* anula el min-height del button global */
     display: flex;
@@ -1062,7 +1064,7 @@ button:disabled {
 /* ── Menú de navegación ── */
 .hero-nav {
     position: fixed;
-    top: 60px;          /* justo debajo del botón hamburger fijo */
+    top: calc(env(safe-area-inset-top, 0px) + 60px); /* justo debajo del botón hamburger fijo */
     right: 14px;
     left: auto;         /* NO ocupa todo el ancho */
     width: max-content;
