@@ -520,3 +520,106 @@
     window.visualViewport.addEventListener('scroll', reposition);
     window.visualViewport.addEventListener('resize', reposition);
 })();
+
+/* ── Hilo rojo: construcción de texto letra a letra al hacer scroll ── */
+(function () {
+    var container = document.getElementById('redThreadText');
+    if (!container) return;
+
+    var text = 'El hilo rojo conecta a quienes están destinados a estar juntos, no importa ni el tiempo ni el lugar, al final siempre se encontrarán...E&G';
+
+    // Construir un <span> por carácter
+    text.split('').forEach(function (ch) {
+        var span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch;
+        container.appendChild(span);
+    });
+
+    var chars = container.querySelectorAll('.char');
+    var total = chars.length;
+    var rafPending = false;
+    var BLUR_ZONE = 10; // número de caracteres con efecto borroso en la frontera
+
+    // Hilo SVG superior
+    var threadPath = document.getElementById('redThreadPath');
+    var threadLength = threadPath ? threadPath.getTotalLength() : 0;
+    if (threadPath) {
+        threadPath.style.strokeDasharray  = threadLength;
+        threadPath.style.strokeDashoffset = threadLength;
+    }
+
+    // Hilo SVG inferior
+    var threadPathBottom = document.getElementById('redThreadPathBottom');
+    var threadLengthBottom = threadPathBottom ? threadPathBottom.getTotalLength() : 0;
+    if (threadPathBottom) {
+        threadPathBottom.style.strokeDasharray  = threadLengthBottom;
+        threadPathBottom.style.strokeDashoffset = threadLengthBottom;
+    }
+
+    function update() {
+        var section = container.closest('.red-thread-section');
+        var rect = section.getBoundingClientRect();
+        var wh = window.innerHeight;
+
+        // Arranca cuando el top de la sección baja al 85% del viewport (casi entrado, no inmediatamente)
+        // y termina cuando el top llega al 30% → sección centrada en pantalla = texto completo.
+        var startPoint = wh * 0.85;
+        var range      = wh * 0.55;  // 0.85 - 0.30 = 0.55 → completo cuando rect.top ≈ 0.3*wh
+        var progress = Math.max(0, Math.min(1, (startPoint - rect.top) / range));
+
+        var visibleCount = Math.round(progress * total);
+        var finished = progress >= 1;
+
+        chars.forEach(function (ch, i) {
+            if (i >= visibleCount) {
+                ch.classList.remove('is-visible');
+                ch.style.opacity = '';
+                ch.style.filter  = '';
+            } else {
+                ch.classList.add('is-visible');
+                // Cuando el texto está completo, quitar cualquier blur residual
+                if (finished) {
+                    ch.style.filter  = '';
+                    ch.style.opacity = '';
+                    return;
+                }
+                // Zona de desenfoque en la frontera (no aplica al último carácter)
+                var distFromFrontier = visibleCount - 1 - i;
+                if (distFromFrontier < BLUR_ZONE) {
+                    var t = distFromFrontier / (BLUR_ZONE - 1);
+                    var blurPx  = (1 - t) * 5;
+                    var opacVal = 0.15 + t * 0.85;
+                    ch.style.filter  = 'blur(' + blurPx.toFixed(2) + 'px)';
+                    ch.style.opacity = opacVal.toFixed(3);
+                } else {
+                    ch.style.filter  = '';
+                    ch.style.opacity = '';
+                }
+            }
+        });
+
+        // Hilo superior: se dibuja durante la primera mitad del progress (0 → 0.65)
+        if (threadPath) {
+            var topP = Math.min(1, progress / 0.65);
+            threadPath.style.strokeDashoffset = (threadLength * (1 - topP)).toFixed(2);
+        }
+        // Hilo inferior: empieza cuando el superior termina (progress 0.65 → 1)
+        if (threadPathBottom) {
+            var bottomP = Math.max(0, Math.min(1, (progress - 0.65) / 0.35));
+            threadPathBottom.style.strokeDashoffset = (threadLengthBottom * (1 - bottomP)).toFixed(2);
+        }
+
+        rafPending = false;
+    }
+
+    function onScroll() {
+        if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(update);
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Sin llamada inicial: la sección empieza completamente vacía
+})();

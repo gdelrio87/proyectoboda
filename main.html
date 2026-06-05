@@ -108,6 +108,23 @@
         </div>
     </section>
 
+    <!-- Sección: Hilo Rojo -->
+    <section class="red-thread-section" id="hilo-rojo">
+        <svg class="red-thread-line" id="redThreadLine" viewBox="0 0 1200 18"
+            preserveAspectRatio="none" aria-hidden="true">
+            <path id="redThreadPath"
+                d="M0,9 C20,3 40,15 60,9 C80,3 100,15 120,9 C140,3 160,15 180,9 C200,3 220,15 240,9 C260,3 280,15 300,9 C320,3 340,15 360,9 C380,3 400,15 420,9 C440,3 460,15 480,9 C500,3 520,15 540,9 C560,3 580,15 600,9 C620,3 640,15 660,9 C680,3 700,15 720,9 C740,3 760,15 780,9 C800,3 820,15 840,9 C860,3 880,15 900,9 C920,3 940,15 960,9 C980,3 1000,15 1020,9 C1040,3 1060,15 1080,9 C1100,3 1120,15 1140,9 C1160,3 1180,15 1200,9"/>
+        </svg>
+        <p class="red-thread-text" id="redThreadText"
+            aria-label="El hilo rojo conecta a quienes están destinados a estar juntos, no importa ni el tiempo ni el lugar, al final siempre se encontrarán...E&G">
+        </p>
+        <svg class="red-thread-line" id="redThreadLineBottom" viewBox="0 0 1200 18"
+            preserveAspectRatio="none" aria-hidden="true">
+            <path id="redThreadPathBottom"
+                d="M0,9 C20,3 40,15 60,9 C80,3 100,15 120,9 C140,3 160,15 180,9 C200,3 220,15 240,9 C260,3 280,15 300,9 C320,3 340,15 360,9 C380,3 400,15 420,9 C440,3 460,15 480,9 C500,3 520,15 540,9 C560,3 580,15 600,9 C620,3 640,15 660,9 C680,3 700,15 720,9 C740,3 760,15 780,9 C800,3 820,15 840,9 C860,3 880,15 900,9 C920,3 940,15 960,9 C980,3 1000,15 1020,9 C1040,3 1060,15 1080,9 C1100,3 1120,15 1140,9 C1160,3 1180,15 1200,9"/>
+        </svg>
+    </section>
+
     <!-- Sección: Lugares de celebración -->
     <section class="venues-section" id="lugares">
         <h2 class="form-section__title">Lugares de celebración</h2>
@@ -115,41 +132,57 @@
         <!-- ── Iglesia ── -->
         <article class="venue-card reveal reveal--left">
             <div class="venue-card__img-wrap">
-                <img
-                    class="venue-card__img"
-                    src="assets/images/lugar-iglesia.jpg"
-                    alt="Iglesia de los Terceros, Sevilla"
-                    loading="lazy">
+                <img class="venue-card__img" src="assets/images/lugar-iglesia.jpg"
+                    alt="Iglesia de los Terceros, Sevilla" loading="lazy">
             </div>
             <div class="venue-card__body">
                 <h3 class="venue-card__name">Iglesia de Nuestra Señora de la Consolación, "Los Terceros"</h3>
                 <p class="venue-card__address">📍 Calle Sol, 10 · Sevilla</p>
-                <p class="venue-card__desc">Joya barroca del centro histórico de Sevilla, este templo franciscano del siglo XVII acogerá nuestra ceremonia con toda la solemnidad y belleza que el día merece.</p>
+                <p class="venue-card__desc">Joya barroca del centro histórico de Sevilla, este templo franciscano del
+                    siglo XVII acogerá nuestra ceremonia con toda la solemnidad y belleza que el día merece.</p>
                 <div class="venue-card__transport">
                     <div class="venue-transport-item">
                         <span class="venue-transport-item__icon" aria-hidden="true">
                             <!-- coche -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-4h12l2 4h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-4h12l2 4h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2" />
+                                <circle cx="7.5" cy="17" r="2" />
+                                <circle cx="16.5" cy="17" r="2" />
+                            </svg>
                         </span>
                         <div class="venue-transport-item__text">
                             <strong>En coche</strong>
-                            <span>Acceso desde la plaza de San Román. Aparcamiento más cercano: Parking Escuelas Pías.</span>
+                            <span>Acceso desde la plaza de San Román. Aparcamiento más cercano: Parking Escuelas
+                                Pías.</span>
                         </div>
                     </div>
                     <div class="venue-transport-item">
                         <span class="venue-transport-item__icon" aria-hidden="true">
                             <!-- taxi -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="9" width="22" height="11" rx="2"/><path d="M5 9V6a1 1 0 0 1 1-1h3l2-2 2 2h3a1 1 0 0 1 1 1v3"/><line x1="9" y1="14" x2="9" y2="14"/><line x1="15" y1="14" x2="15" y2="14"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="9" width="22" height="11" rx="2" />
+                                <path d="M5 9V6a1 1 0 0 1 1-1h3l2-2 2 2h3a1 1 0 0 1 1 1v3" />
+                                <line x1="9" y1="14" x2="9" y2="14" />
+                                <line x1="15" y1="14" x2="15" y2="14" />
+                            </svg>
                         </span>
                         <div class="venue-transport-item__text">
                             <strong>Taxi</strong>
-                            <span>Radio Taxi Sevilla: <a href="tel:954580000">954 58 00 00</a> · Tele Taxi: <a href="tel:954622222">954 62 22 22</a></span>
+                            <span>Radio Taxi Sevilla: <a href="tel:954580000">954 58 00 00</a> · Tele Taxi: <a
+                                    href="tel:954622222">954 62 22 22</a></span>
                         </div>
                     </div>
                     <div class="venue-transport-item">
                         <span class="venue-transport-item__icon" aria-hidden="true">
                             <!-- vtc -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2" />
+                                <line x1="12" y1="18" x2="12.01" y2="18" />
+                            </svg>
                         </span>
                         <div class="venue-transport-item__text">
                             <strong>VTC</strong>
@@ -157,26 +190,37 @@
                         </div>
                     </div>
                 </div>
-                <a class="venue-card__map-btn" href="https://maps.app.goo.gl/nYLEumkEwZChgWUt6" target="_blank" rel="noopener noreferrer">Ver en Google Maps →</a>
+                <a class="venue-card__map-btn" href="https://maps.app.goo.gl/nYLEumkEwZChgWUt6" target="_blank"
+                    rel="noopener noreferrer">Ver en Google Maps →</a>
             </div>
         </article>
 
         <!-- ── Hacienda ── -->
         <article class="venue-card venue-card--reverse reveal reveal--right">
             <div class="venue-card__img-wrap">
-                <img
-                    class="venue-card__img"
-                    src="assets/images/lugar-hacienda.jpg"
-                    alt="Hacienda Al-Baraka, Alcalá de Guadaíra"
-                    loading="lazy">
+                <img class="venue-card__img" src="assets/images/lugar-hacienda.jpg"
+                    alt="Hacienda Al-Baraka, Alcalá de Guadaíra" loading="lazy">
             </div>
             <div class="venue-card__body">
                 <h3 class="venue-card__name">Hacienda Al-Baraka</h3>
-                <p class="venue-card__address">📍 A-8031 - Carretera Antigua Dos Hermanas-Utrera, s/n, Alcalá de Guadaíra</p>
+                <p class="venue-card__address">📍 A-8031 - Carretera Antigua Dos Hermanas-Utrera, s/n, Alcalá de
+                    Guadaíra</p>
+                <p class="venue-card__desc">Complejo de arquitectura palaciega marcadamente influenciado por el arte y
+                    la estética árabe. El espacio se articula en torno a característicos patios andalusíes decorados con
+                    fuentes y galerías de arcos, combinando salones temáticos con frondosos exteriores cubiertos de
+                    palmerales y zonas ajardinadas.</p>
                 <div class="venue-card__transport">
                     <div class="venue-transport-item">
                         <span class="venue-transport-item__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/> <path d="M15 6v6"/><path d="M2 12h20"/><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6z"/><circle cx="8" cy="16" r="1"/><circle cx="16" cy="16" r="1"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 6v6" />
+                                <path d="M15 6v6" />
+                                <path d="M2 12h20" />
+                                <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6z" />
+                                <circle cx="8" cy="16" r="1" />
+                                <circle cx="16" cy="16" r="1" />
+                            </svg>
                         </span>
                         <div class="venue-transport-item__text">
                             <strong>En autobús</strong>
@@ -185,7 +229,13 @@
                     </div>
                     <div class="venue-transport-item">
                         <span class="venue-transport-item__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-4h12l2 4h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-4h12l2 4h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2" />
+                                <circle cx="7.5" cy="17" r="2" />
+                                <circle cx="16.5" cy="17" r="2" />
+                            </svg>
                         </span>
                         <div class="venue-transport-item__text">
                             <strong>En coche</strong>
@@ -194,16 +244,27 @@
                     </div>
                     <div class="venue-transport-item">
                         <span class="venue-transport-item__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="9" width="22" height="11" rx="2"/><path d="M5 9V6a1 1 0 0 1 1-1h3l2-2 2 2h3a1 1 0 0 1 1 1v3"/><line x1="9" y1="14" x2="9" y2="14"/><line x1="15" y1="14" x2="15" y2="14"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="9" width="22" height="11" rx="2" />
+                                <path d="M5 9V6a1 1 0 0 1 1-1h3l2-2 2 2h3a1 1 0 0 1 1 1v3" />
+                                <line x1="9" y1="14" x2="9" y2="14" />
+                                <line x1="15" y1="14" x2="15" y2="14" />
+                            </svg>
                         </span>
                         <div class="venue-transport-item__text">
                             <strong>Taxi</strong>
-                            <span>Radio Taxi Alcalá: <a href="tel:955687900">955 68 79 00</a> · Radio Taxi Sevilla: <a href="tel:954580000">954 58 00 00</a></span>
+                            <span>Radio Taxi Alcalá: <a href="tel:955687900">955 68 79 00</a> · Radio Taxi Sevilla: <a
+                                    href="tel:954580000">954 58 00 00</a></span>
                         </div>
                     </div>
                     <div class="venue-transport-item">
                         <span class="venue-transport-item__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2" />
+                                <line x1="12" y1="18" x2="12.01" y2="18" />
+                            </svg>
                         </span>
                         <div class="venue-transport-item__text">
                             <strong>VTC</strong>
@@ -211,7 +272,8 @@
                         </div>
                     </div>
                 </div>
-                <a class="venue-card__map-btn" href="https://maps.app.goo.gl/G58K5i88nBMpqXDCA" target="_blank" rel="noopener noreferrer">Ver en Google Maps →</a>
+                <a class="venue-card__map-btn" href="https://maps.app.goo.gl/G58K5i88nBMpqXDCA" target="_blank"
+                    rel="noopener noreferrer">Ver en Google Maps →</a>
             </div>
         </article>
 
@@ -221,141 +283,153 @@
     <div class="sections-grid">
 
         <!-- Sección: Autobuses -->
-    <section class="buses-section reveal" id="autobuses">
-        <h2 class="form-section__title">Autobuses</h2>
+        <section class="buses-section reveal" id="autobuses">
+            <h2 class="form-section__title">Autobuses</h2>
 
-        <!-- ── IDA ── -->
-        <div class="bus-route">
-            <div class="bus-route__header reveal reveal--left">
-                <svg class="bus-route__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="7" width="20" height="11" rx="2"/>
-                    <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
-                    <circle cx="8" cy="18" r="1.5"/><circle cx="16" cy="18" r="1.5"/>
-                    <path d="M2 12h20"/>
-                </svg>
-                <span class="bus-route__title">Ida</span>
-            </div>
-            <div class="bus-route__body">
-                <div class="bus-video-wrap">
-                    <video class="bus-video" src="assets/videos/bus_ida.mp4"
-                        autoplay muted loop playsinline controls
-                        aria-label="Vídeo ilustrativo del trayecto de ida al lugar de la boda"></video>
-                    <p class="bus-video__caption">Sevilla → Alcalá de Guadaíra</p>
+            <!-- ── IDA ── -->
+            <div class="bus-route">
+                <div class="bus-route__header reveal reveal--left">
+                    <svg class="bus-route__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="11" rx="2" />
+                        <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
+                        <circle cx="8" cy="18" r="1.5" />
+                        <circle cx="16" cy="18" r="1.5" />
+                        <path d="M2 12h20" />
+                    </svg>
+                    <span class="bus-route__title">Ida</span>
                 </div>
-                <div class="bus-stops">
-                    <!-- Parada 1: salida -->
-                    <div class="bus-stop">
-                        <div class="bus-stop__track">
-                            <div class="bus-stop__marker bus-stop__marker--depart">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <rect x="2" y="7" width="20" height="11" rx="2"/>
-                                    <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
-                                    <circle cx="8" cy="18" r="1.5"/><circle cx="16" cy="18" r="1.5"/>
-                                    <path d="M2 12h20"/>
-                                </svg>
-                            </div>
-                            <div class="bus-stop__line"></div>
-                        </div>
-                        <div class="bus-stop__content">
-                            <time class="bus-stop__time">13:45</time>
-                            <span class="bus-stop__name">Plaza Ponce de León</span>
-                            <span class="bus-stop__place">Sevilla</span>
-                        </div>
+                <div class="bus-route__body">
+                    <div class="bus-video-wrap">
+                        <video class="bus-video" src="assets/videos/bus_ida.mp4" autoplay muted loop playsinline
+                            aria-label="Vídeo ilustrativo del trayecto de ida al lugar de la boda"></video>
+                        <p class="bus-video__caption">Sevilla → Alcalá de Guadaíra</p>
                     </div>
-                    <!-- Parada 2: llegada -->
-                    <div class="bus-stop">
-                        <div class="bus-stop__track">
-                            <div class="bus-stop__marker bus-stop__marker--arrive">
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
+                    <div class="bus-stops">
+                        <!-- Parada 1: salida -->
+                        <div class="bus-stop">
+                            <div class="bus-stop__track">
+                                <div class="bus-stop__marker bus-stop__marker--depart">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <rect x="2" y="7" width="20" height="11" rx="2" />
+                                        <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
+                                        <circle cx="8" cy="18" r="1.5" />
+                                        <circle cx="16" cy="18" r="1.5" />
+                                        <path d="M2 12h20" />
+                                    </svg>
+                                </div>
+                                <div class="bus-stop__line"></div>
+                            </div>
+                            <div class="bus-stop__content">
+                                <time class="bus-stop__time">13:45</time>
+                                <span class="bus-stop__name">Plaza Ponce de León</span>
+                                <span class="bus-stop__place">Sevilla · Centro</span>
                             </div>
                         </div>
-                        <div class="bus-stop__content">
-                            <time class="bus-stop__time">14:30</time>
-                            <span class="bus-stop__name">Hacienda Al-Baraka</span>
-                            <span class="bus-stop__place">Alcalá de Guadaíra</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ── VUELTA ── -->
-        <div class="bus-route">
-            <div class="bus-route__header reveal reveal--right">
-                <svg class="bus-route__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="7" width="20" height="11" rx="2"/>
-                    <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
-                    <circle cx="8" cy="18" r="1.5"/><circle cx="16" cy="18" r="1.5"/>
-                    <path d="M2 12h20"/>
-                </svg>
-                <span class="bus-route__title">Vuelta</span>
-            </div>
-            <div class="bus-route__body">
-                <div class="bus-video-wrap">
-                    <video class="bus-video" src="assets/videos/bus_vuelta.mp4"
-                        autoplay muted loop playsinline controls
-                        aria-label="Vídeo ilustrativo del trayecto de vuelta desde la hacienda"></video>
-                    <p class="bus-video__caption">Alcalá de Guadaíra → Sevilla</p>
-                </div>
-                <div class="bus-stops">
-                    <!-- Parada 1: salida con dos horarios -->
-                    <div class="bus-stop">
-                        <div class="bus-stop__track">
-                            <div class="bus-stop__marker bus-stop__marker--depart">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <rect x="2" y="7" width="20" height="11" rx="2"/>
-                                    <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
-                                    <circle cx="8" cy="18" r="1.5"/><circle cx="16" cy="18" r="1.5"/>
-                                    <path d="M2 12h20"/>
-                                </svg>
+                        <!-- Parada 2: llegada -->
+                        <div class="bus-stop">
+                            <div class="bus-stop__track">
+                                <div class="bus-stop__marker bus-stop__marker--arrive">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                    </svg>
+                                </div>
                             </div>
-                            <div class="bus-stop__line"></div>
-                        </div>
-                        <div class="bus-stop__content">
-                            <div class="bus-stop__times">
-                                <span class="bus-stop__time-pill bus-stop__time-pill--second">1.er bus · <time>20:30</time></span>
-                                <span class="bus-stop__time-pill bus-stop__time-pill--second">2.º bus · <time>00:00</time></span>
+                            <div class="bus-stop__content">
+                                <time class="bus-stop__time">14:30</time>
+                                <span class="bus-stop__name">Hacienda Al-Baraka</span>
+                                <span class="bus-stop__place">Alcalá de Guadaíra</span>
                             </div>
-                            <span class="bus-stop__name">Hacienda Al-Baraka</span>
-                            <span class="bus-stop__place">Alcalá de Guadaíra</span>
-                        </div>
-                    </div>
-                    <!-- Parada 2: intermedia -->
-                    <div class="bus-stop">
-                        <div class="bus-stop__track">
-                            <div class="bus-stop__marker bus-stop__marker--mid">
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="5"/></svg>
-                            </div>
-                            <div class="bus-stop__line"></div>
-                        </div>
-                        <div class="bus-stop__content">
-                            <span class="bus-stop__name">Hotel Meliá Los Lebreros</span>
-                            <span class="bus-stop__place">Sevilla</span>
-                        </div>
-                    </div>
-                    <!-- Parada 3: llegada -->
-                    <div class="bus-stop">
-                        <div class="bus-stop__track">
-                            <div class="bus-stop__marker bus-stop__marker--arrive">
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="bus-stop__content">
-                            <span class="bus-stop__name">Calle Torneo</span>
-                            <span class="bus-stop__place">Sevilla · Puente de la Barqueta</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- /.bus-route vuelta -->
 
-    </section><!-- /#autobuses -->
+            <!-- ── VUELTA ── -->
+            <div class="bus-route">
+                <div class="bus-route__header reveal reveal--right">
+                    <svg class="bus-route__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="11" rx="2" />
+                        <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
+                        <circle cx="8" cy="18" r="1.5" />
+                        <circle cx="16" cy="18" r="1.5" />
+                        <path d="M2 12h20" />
+                    </svg>
+                    <span class="bus-route__title">Vuelta</span>
+                </div>
+                <div class="bus-route__body">
+                    <div class="bus-video-wrap">
+                        <video class="bus-video" src="assets/videos/bus_vuelta.mp4" autoplay muted loop playsinline
+                            aria-label="Vídeo ilustrativo del trayecto de vuelta desde la hacienda"></video>
+                        <p class="bus-video__caption">Alcalá de Guadaíra → Sevilla</p>
+                    </div>
+                    <div class="bus-stops">
+                        <!-- Parada 1: salida con dos horarios -->
+                        <div class="bus-stop">
+                            <div class="bus-stop__track">
+                                <div class="bus-stop__marker bus-stop__marker--depart">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <rect x="2" y="7" width="20" height="11" rx="2" />
+                                        <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
+                                        <circle cx="8" cy="18" r="1.5" />
+                                        <circle cx="16" cy="18" r="1.5" />
+                                        <path d="M2 12h20" />
+                                    </svg>
+                                </div>
+                                <div class="bus-stop__line"></div>
+                            </div>
+                            <div class="bus-stop__content">
+                                <div class="bus-stop__times">
+                                    <span class="bus-stop__time-pill bus-stop__time-pill--second">1.er bus ·
+                                        <time>20:30</time></span>
+                                    <span class="bus-stop__time-pill bus-stop__time-pill--second">2.º bus ·
+                                        <time>00:00</time></span>
+                                </div>
+                                <span class="bus-stop__name">Hacienda Al-Baraka</span>
+                                <span class="bus-stop__place">Alcalá de Guadaíra</span>
+                            </div>
+                        </div>
+                        <!-- Parada 2: intermedia -->
+                        <div class="bus-stop">
+                            <div class="bus-stop__track">
+                                <div class="bus-stop__marker bus-stop__marker--mid">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="5" />
+                                    </svg>
+                                </div>
+                                <div class="bus-stop__line"></div>
+                            </div>
+                            <div class="bus-stop__content">
+                                <span class="bus-stop__name">Hotel Meliá Los Lebreros</span>
+                                <span class="bus-stop__place">Sevilla · Nervión</span>
+                            </div>
+                        </div>
+                        <!-- Parada 3: llegada -->
+                        <div class="bus-stop">
+                            <div class="bus-stop__track">
+                                <div class="bus-stop__marker bus-stop__marker--arrive">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="bus-stop__content">
+                                <span class="bus-stop__name">Calle Torneo</span>
+                                <span class="bus-stop__place">Sevilla · Puente de la Barqueta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.bus-route vuelta -->
 
-     <!-- Sección: Timeline -->
+        </section><!-- /#autobuses -->
+
+        <!-- Sección: Timeline -->
         <section class="timeline reveal" id="cronograma">
             <h2 class="form-section__title">Día de la boda</h2>
             <div class="timeline-groups-row">
