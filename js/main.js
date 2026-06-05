@@ -526,13 +526,18 @@
     var container = document.getElementById('redThreadText');
     if (!container) return;
 
-    var text = 'El hilo rojo conecta a quienes están destinados a estar juntos, no importa ni el tiempo ni el lugar, al final siempre se encontrarán...E&G';
+    var text = 'El hilo rojo conecta a quienes están destinados a estar juntos, no importa ni el tiempo ni el lugar, al final siempre se encontrarán... E&G';
 
     // Construir un <span> por carácter
-    text.split('').forEach(function (ch) {
+    var hiloStart = text.indexOf('hilo rojo');
+    var hiloEnd   = hiloStart + 'hilo rojo'.length - 1;
+    text.split('').forEach(function (ch, i) {
         var span = document.createElement('span');
         span.className = 'char';
         span.textContent = ch;
+        if (i >= hiloStart && i <= hiloEnd) {
+            span.style.color = '#ff0000';
+        }
         container.appendChild(span);
     });
 
