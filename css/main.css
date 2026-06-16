@@ -366,8 +366,9 @@ a {
     .step-painting-hint {
         display: flex;
         justify-content: center;
-        margin-top: 5px;
+        margin-top: 10px;
         color: rgba(107, 46, 46, 0.4);
+        cursor: zoom-in;
     }
     .step-painting-hint svg {
         width: 15px;

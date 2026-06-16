@@ -628,8 +628,11 @@
 
         var hint = document.createElement('span');
         hint.className = 'step-painting-hint';
-        hint.setAttribute('aria-hidden', 'true');
-        hint.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="21" y2="21"/></svg>';
+        hint.setAttribute('aria-label', 'Ampliar imagen');
+        hint.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="16" y1="16" x2="21" y2="21"/></svg>';
+        hint.addEventListener('click', function () {
+            open(painting.src || painting.currentSrc, painting.alt);
+        });
         wrap.appendChild(hint);
     });
 
