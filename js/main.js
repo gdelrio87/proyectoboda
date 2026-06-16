@@ -539,12 +539,51 @@
     if (slides.length < 2) return;
 
     let current = 0;
+    const NORMAL_INTERVAL = 3000;
+    let intervalId = null;
 
-    setInterval(() => {
+    function goTo(index) {
         slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
+        current = index;
         slides[current].classList.add('active');
-    }, 3000);
+        updateDots();
+    }
+
+    function next() {
+        goTo((current + 1) % slides.length);
+    }
+
+    function startInterval(delay) {
+        clearInterval(intervalId);
+        intervalId = setInterval(next, delay);
+    }
+
+    function updateDots() {
+        document.querySelectorAll('.slideshow-dot').forEach(function (dot, i) {
+            dot.classList.toggle('slideshow-dot--active', i === current);
+        });
+    }
+
+    // Crear dots
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'slideshow-dots';
+    slides.forEach(function (_, i) {
+        const dot = document.createElement('button');
+        dot.className = 'slideshow-dot' + (i === 0 ? ' slideshow-dot--active' : '');
+        dot.setAttribute('aria-label', 'Foto ' + (i + 1));
+        dot.addEventListener('click', function () {
+            goTo(i);
+            startInterval(NORMAL_INTERVAL);
+        });
+        dotsContainer.appendChild(dot);
+    });
+    slides[0].closest('.hero-slideshow').appendChild(dotsContainer);
+
+    // Primera transición rápida (1.5s), luego ritmo normal
+    setTimeout(function () {
+        next();
+        startInterval(NORMAL_INTERVAL);
+    }, 1500);
 })();
 
 /* ── Lightbox para imágenes del cronograma ── */

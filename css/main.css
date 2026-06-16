@@ -69,8 +69,13 @@ html {
 
 /* Animación del overlay de texto al cargar */
 @keyframes overlaySlideIn {
-    from { opacity: 0; transform: translateX(-16px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateX(-16px) translateZ(0); }
+    to   { opacity: 1; transform: translateX(0)    translateZ(0); }
+}
+
+@keyframes overlaySlideInRight {
+    from { opacity: 0; transform: translateX(16px) translateZ(0); }
+    to   { opacity: 1; transform: translateX(0)   translateZ(0); }
 }
 
 .hero-text-overlay {
@@ -81,8 +86,8 @@ body {
     font-family: 'Georgia', serif;
     color: var(--text);
     line-height: 1.6;
-    overflow-x: hidden;
     background: linear-gradient(160deg, #fff0ef 0%, #fce4e0 45%, #fff5f0 100%);
+    overflow-x: clip; /* clip en lugar de hidden: no crea contexto de scroll en iOS */
 }
 
 section {
@@ -917,13 +922,52 @@ button:disabled {
     .hero-img-desktop { display: block; }
 }
 
+/* ── Slideshow dots ── */
+.slideshow-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.slideshow-dot {
+    display: block;
+    width: 7px;
+    height: 7px;
+    min-width: 0;
+    min-height: 0;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    pointer-events: all;
+    transition: background 0.3s ease, transform 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.slideshow-dot--active {
+    background: rgba(255, 255, 255, 0.95);
+    transform: scale(1.3);
+}
+
 /* ── Texto superpuesto en imagen principal ── */
 .hero-text-overlay {
     position: fixed;
     top: calc(env(safe-area-inset-top, 0px) + 14px);
     left: 14px;
     z-index: 30;
-    will-change: top;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -1021,7 +1065,9 @@ button:disabled {
     top: calc(env(safe-area-inset-top, 0px) + 14px);
     right: 14px;
     z-index: 30;
-    will-change: top;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    animation: overlaySlideInRight 0.9s 0.4s ease both;
     width: auto;        /* anula el width:100% del button global */
     min-height: auto;   /* anula el min-height del button global */
     display: flex;
