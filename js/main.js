@@ -11,35 +11,35 @@
     function createConfetti() {
         const confettiPieces = 50;
         const colors = ['#667eea', '#764ba2', '#f3be63', '#ff6b9d', '#00d4ff', '#00ff88'];
-        
+
         for (let i = 0; i < confettiPieces; i++) {
             const confetti = document.createElement('div');
             confetti.className = 'confetti';
-            
+
             const piece = document.createElement('div');
             piece.className = 'confetti-piece';
             piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            
+
             confetti.appendChild(piece);
             confettiContainer.appendChild(confetti);
-            
+
             const startX = Math.random() * window.innerWidth;
             const startY = -20;
             const endX = startX + (Math.random() - 0.5) * 300;
             const endY = window.innerHeight + 20;
             const duration = 2000 + Math.random() * 1000;
             const delay = Math.random() * 200;
-            
+
             confetti.style.left = startX + 'px';
             confetti.style.top = startY + 'px';
-            
+
             // Usar setTimeout para aplicar la animación después de que el elemento se añada al DOM
             setTimeout(() => {
                 confetti.style.transition = `all ${duration}ms cubic-bezier(0.12, 0.74, 0.58, 0.99)`;
                 confetti.style.transform = `translate(${endX - startX}px, ${endY - startY}px) rotate(${Math.random() * 720}deg)`;
                 confetti.style.opacity = '0';
             }, 10);
-            
+
             // Eliminar el confeti después de caer
             setTimeout(() => {
                 confetti.remove();
@@ -430,9 +430,9 @@
         if (asistenciaSeleccionada && asistenciaSeleccionada.value === 'Sí') {
             var camposRadioCondicionales = [
                 { name: 'entry.1899259683', errorId: 'error-acompanante' },
-                { name: 'entry.186004565',  errorId: 'error-hijos' },
+                { name: 'entry.186004565', errorId: 'error-hijos' },
                 { name: 'entry.1679883743', errorId: 'error-bus-ida' },
-                { name: 'entry.303435702',  errorId: 'error-bus-vuelta' }
+                { name: 'entry.303435702', errorId: 'error-bus-vuelta' }
             ];
             camposRadioCondicionales.forEach(function (campo) {
                 if (!form.querySelector('input[name="' + campo.name + '"]:checked')) {
@@ -501,7 +501,7 @@
 /* ── Menú de navegación (sección 0) ── */
 (function () {
     const toggle = document.getElementById('navToggle');
-    const nav    = document.getElementById('heroNav');
+    const nav = document.getElementById('heroNav');
     if (!toggle || !nav) return;
 
     function openMenu() {
@@ -619,6 +619,18 @@
         painting.addEventListener('click', function () {
             open(this.src || this.currentSrc, this.alt);
         });
+
+        // Envolver imagen + lupa en un bloque vertical
+        var wrap = document.createElement('div');
+        wrap.className = 'step-painting-block';
+        painting.parentNode.insertBefore(wrap, painting);
+        wrap.appendChild(painting);
+
+        var hint = document.createElement('span');
+        hint.className = 'step-painting-hint';
+        hint.setAttribute('aria-hidden', 'true');
+        hint.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="21" y2="21"/></svg>';
+        wrap.appendChild(hint);
     });
 
     document.addEventListener('keydown', function (e) {
@@ -664,18 +676,18 @@
 (function () {
     if (!window.visualViewport) return;
 
-    var overlay  = document.querySelector('.hero-text-overlay');
-    var toggle   = document.getElementById('navToggle');
-    var nav      = document.getElementById('heroNav');
+    var overlay = document.querySelector('.hero-text-overlay');
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('heroNav');
 
-    var BASE_TOP     = 14;   // px desde el borde superior
-    var NAV_OFFSET   = 60;   // px desde el borde superior para el menú desplegado
+    var BASE_TOP = 14;   // px desde el borde superior
+    var NAV_OFFSET = 60;   // px desde el borde superior para el menú desplegado
 
     function reposition() {
         var offsetY = window.visualViewport.offsetTop;
         if (overlay) overlay.style.top = (offsetY + BASE_TOP) + 'px';
-        if (toggle)  toggle.style.top  = (offsetY + BASE_TOP) + 'px';
-        if (nav)     nav.style.top     = (offsetY + NAV_OFFSET) + 'px';
+        if (toggle) toggle.style.top = (offsetY + BASE_TOP) + 'px';
+        if (nav) nav.style.top = (offsetY + NAV_OFFSET) + 'px';
     }
 
     window.visualViewport.addEventListener('scroll', reposition);
@@ -691,7 +703,7 @@
 
     // Construir un <span> por carácter
     var hiloStart = text.indexOf('hilo rojo');
-    var hiloEnd   = hiloStart + 'hilo rojo'.length - 1;
+    var hiloEnd = hiloStart + 'hilo rojo'.length - 1;
     text.split('').forEach(function (ch, i) {
         var span = document.createElement('span');
         span.className = 'char';
@@ -711,7 +723,7 @@
     var threadPath = document.getElementById('redThreadPath');
     var threadLength = threadPath ? threadPath.getTotalLength() : 0;
     if (threadPath) {
-        threadPath.style.strokeDasharray  = threadLength;
+        threadPath.style.strokeDasharray = threadLength;
         threadPath.style.strokeDashoffset = threadLength;
     }
 
@@ -719,7 +731,7 @@
     var threadPathBottom = document.getElementById('redThreadPathBottom');
     var threadLengthBottom = threadPathBottom ? threadPathBottom.getTotalLength() : 0;
     if (threadPathBottom) {
-        threadPathBottom.style.strokeDasharray  = threadLengthBottom;
+        threadPathBottom.style.strokeDasharray = threadLengthBottom;
         threadPathBottom.style.strokeDashoffset = threadLengthBottom;
     }
 
@@ -731,7 +743,7 @@
         // Arranca cuando el top de la sección baja al 85% del viewport (casi entrado, no inmediatamente)
         // y termina cuando el top llega al 30% → sección centrada en pantalla = texto completo.
         var startPoint = wh * 0.85;
-        var range      = wh * 0.55;  // 0.85 - 0.30 = 0.55 → completo cuando rect.top ≈ 0.3*wh
+        var range = wh * 0.55;  // 0.85 - 0.30 = 0.55 → completo cuando rect.top ≈ 0.3*wh
         var progress = Math.max(0, Math.min(1, (startPoint - rect.top) / range));
 
         var visibleCount = Math.round(progress * total);
@@ -741,12 +753,12 @@
             if (i >= visibleCount) {
                 ch.classList.remove('is-visible');
                 ch.style.opacity = '';
-                ch.style.filter  = '';
+                ch.style.filter = '';
             } else {
                 ch.classList.add('is-visible');
                 // Cuando el texto está completo, quitar cualquier blur residual
                 if (finished) {
-                    ch.style.filter  = '';
+                    ch.style.filter = '';
                     ch.style.opacity = '';
                     return;
                 }
@@ -754,12 +766,12 @@
                 var distFromFrontier = visibleCount - 1 - i;
                 if (distFromFrontier < BLUR_ZONE) {
                     var t = distFromFrontier / (BLUR_ZONE - 1);
-                    var blurPx  = (1 - t) * 5;
+                    var blurPx = (1 - t) * 5;
                     var opacVal = 0.15 + t * 0.85;
-                    ch.style.filter  = 'blur(' + blurPx.toFixed(2) + 'px)';
+                    ch.style.filter = 'blur(' + blurPx.toFixed(2) + 'px)';
                     ch.style.opacity = opacVal.toFixed(3);
                 } else {
-                    ch.style.filter  = '';
+                    ch.style.filter = '';
                     ch.style.opacity = '';
                 }
             }
