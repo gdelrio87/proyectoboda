@@ -99,7 +99,7 @@
     const formStatus = document.getElementById('formStatus');
     const weddingRsvpSubmit = document.getElementById('weddingRsvpSubmit');
     const FORM_ERROR_MESSAGE = 'No se ha podido enviar el formulario. Intentalo de nuevo en unos minutos.';
-    const FORM_SUCCESS_MESSAGE = 'Tu confirmacion se ha enviado correctamente.';
+    const FORM_SUCCESS_MESSAGE = 'Se ha enviado un correo de confirmación al email. En caso de error, puede modificar la respuesta siguiendo las instrucciones del mismo.';
     const FORM_SUBMISSION_TIMEOUT_MS = 10000;
     let formSubmissionInProgress = false;
     let formSubmissionTimeoutId = null;
@@ -185,6 +185,12 @@
             showFormStatus(FORM_SUCCESS_MESSAGE, false);
             resetSubmissionState();
 
+            // Centrar la sección de confirmación en el viewport
+            var seccionConfirmacion = document.getElementById('confirmacion');
+            if (seccionConfirmacion) {
+                seccionConfirmacion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
             // Ocultar mensaje y mostrar de nuevo el formulario tras 4 segundos
             setTimeout(() => {
                 formStatus.hidden = true;
@@ -200,7 +206,7 @@
                     var fs = document.getElementById(id);
                     if (fs) fs.classList.add('form-fieldset--hidden');
                 });
-            }, 4000);
+            }, 30000);
         });
 
         weddingRsvpForm.addEventListener('submit', (event) => {
@@ -341,9 +347,53 @@
         inputNombre.addEventListener('input', function () { clearError(this, 'error-nombre'); });
     }
 
+    var inputEmail = document.getElementById('input-email');
+    if (inputEmail) {
+        inputEmail.addEventListener('input', function () { clearError(this, 'error-email'); });
+    }
+
     document.querySelectorAll('input[name="entry.877086558"]').forEach(function (radio) {
         radio.addEventListener('change', function () {
             var err = document.getElementById('error-asistencia');
+            if (err) err.classList.remove('field-error--visible');
+        });
+    });
+
+    // Limpiar errores de campos condicionales al interactuar
+    ['entry.1899259683', 'entry.186004565', 'entry.1679883743', 'entry.303435702'].forEach(function (name) {
+        var errorMap = {
+            'entry.1899259683': 'error-acompanante',
+            'entry.186004565': 'error-hijos',
+            'entry.1679883743': 'error-bus-ida',
+            'entry.303435702': 'error-bus-vuelta'
+        };
+        document.querySelectorAll('input[name="' + name + '"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var err = document.getElementById(errorMap[name]);
+                if (err) err.classList.remove('field-error--visible');
+            });
+        });
+    });
+
+    var inputAlergias = document.getElementById('input-alergias');
+    if (inputAlergias) {
+        inputAlergias.addEventListener('input', function () { clearError(this, 'error-alergias'); });
+    }
+    var inputVegano = document.getElementById('input-vegano');
+    if (inputVegano) {
+        inputVegano.addEventListener('input', function () { clearError(this, 'error-vegano'); });
+    }
+    var inputNombreAcompanante = document.getElementById('input-nombre-acompanante');
+    if (inputNombreAcompanante) {
+        inputNombreAcompanante.addEventListener('input', function () { clearError(this, 'error-nombre-acompanante'); });
+    }
+    var inputHijosDetalle = document.getElementById('input-hijos-detalle');
+    if (inputHijosDetalle) {
+        inputHijosDetalle.addEventListener('input', function () { clearError(this, 'error-hijos-detalle'); });
+    }
+    document.querySelectorAll('input[name="entry.595612430"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            var err = document.getElementById('error-bus-vuelta-cual');
             if (err) err.classList.remove('field-error--visible');
         });
     });
@@ -359,6 +409,15 @@
             valid = false;
         }
 
+        // Validar email
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (inputEmail && (!inputEmail.value.trim() || !emailRegex.test(inputEmail.value.trim()))) {
+            inputEmail.classList.add('input--invalid');
+            var errEmail = document.getElementById('error-email');
+            if (errEmail) errEmail.classList.add('field-error--visible');
+            valid = false;
+        }
+
         // Validar asistencia
         var asistenciaSeleccionada = form.querySelector('input[name="entry.877086558"]:checked');
         if (!asistenciaSeleccionada) {
@@ -366,6 +425,69 @@
             if (errAsistencia) errAsistencia.classList.add('field-error--visible');
             valid = false;
         }
+
+        // Validar campos obligatorios cuando asistencia = Sí
+        if (asistenciaSeleccionada && asistenciaSeleccionada.value === 'Sí') {
+            var camposRadioCondicionales = [
+                { name: 'entry.1899259683', errorId: 'error-acompanante' },
+                { name: 'entry.186004565',  errorId: 'error-hijos' },
+                { name: 'entry.1679883743', errorId: 'error-bus-ida' },
+                { name: 'entry.303435702',  errorId: 'error-bus-vuelta' }
+            ];
+            camposRadioCondicionales.forEach(function (campo) {
+                if (!form.querySelector('input[name="' + campo.name + '"]:checked')) {
+                    var err = document.getElementById(campo.errorId);
+                    if (err) err.classList.add('field-error--visible');
+                    valid = false;
+                }
+            });
+
+            if (inputAlergias && !inputAlergias.value.trim()) {
+                inputAlergias.classList.add('input--invalid');
+                var errAlergias = document.getElementById('error-alergias');
+                if (errAlergias) errAlergias.classList.add('field-error--visible');
+                valid = false;
+            }
+            if (inputVegano && !inputVegano.value.trim()) {
+                inputVegano.classList.add('input--invalid');
+                var errVegano = document.getElementById('error-vegano');
+                if (errVegano) errVegano.classList.add('field-error--visible');
+                valid = false;
+            }
+
+            // Validar nombre acompañante si viene con acompañante
+            var acompananteSi = form.querySelector('input[name="entry.1899259683"]:checked');
+            if (acompananteSi && acompananteSi.value === 'Sí') {
+                if (inputNombreAcompanante && !inputNombreAcompanante.value.trim()) {
+                    inputNombreAcompanante.classList.add('input--invalid');
+                    var errNombreAcomp = document.getElementById('error-nombre-acompanante');
+                    if (errNombreAcomp) errNombreAcomp.classList.add('field-error--visible');
+                    valid = false;
+                }
+            }
+
+            // Validar detalle hijos si viene con hijos
+            var hijosSi = form.querySelector('input[name="entry.186004565"]:checked');
+            if (hijosSi && hijosSi.value === 'Sí') {
+                if (inputHijosDetalle && !inputHijosDetalle.value.trim()) {
+                    inputHijosDetalle.classList.add('input--invalid');
+                    var errHijosDetalle = document.getElementById('error-hijos-detalle');
+                    if (errHijosDetalle) errHijosDetalle.classList.add('field-error--visible');
+                    valid = false;
+                }
+            }
+
+            // Validar qué bus de vuelta si necesita bus de vuelta
+            var busVueltaSi = form.querySelector('input[name="entry.303435702"]:checked');
+            if (busVueltaSi && busVueltaSi.value === 'Sí') {
+                if (!form.querySelector('input[name="entry.595612430"]:checked')) {
+                    var errBusVueltaCual = document.getElementById('error-bus-vuelta-cual');
+                    if (errBusVueltaCual) errBusVueltaCual.classList.add('field-error--visible');
+                    valid = false;
+                }
+            }
+
+        } // fin if asistencia === 'Sí'
 
         if (!valid) {
             e.preventDefault();

@@ -504,9 +504,16 @@
 
                     <!-- Siempre visible: nombre -->
                     <div class="form-group" id="group-nombre">
-                        <label for="input-nombre">Nombre y apellidos <span class="required-mark">*</span></label>
+                        <label for="input-nombre">Nombre y apellidos<span class="required-mark">*</span></label>
                         <input type="text" id="input-nombre" name="entry.1377299420" required autocomplete="name">
                         <span class="field-error" id="error-nombre">Este campo es obligatorio</span>
+                    </div>
+
+                    <!-- Siempre visible: email -->
+                    <div class="form-group" id="group-email">
+                        <label for="input-email">Email<span class="required-mark">*</span></label>
+                        <input type="email" id="input-email" name="entry.811946381" required autocomplete="email">
+                        <span class="field-error" id="error-email">Introduce un email válido</span>
                     </div>
 
                     <!-- Siempre visible: asistencia -->
@@ -524,34 +531,38 @@
 
                     <!-- Visible si asistencia = Sí -->
                     <div class="form-group form-group--hidden" id="group-acompanante">
-                        <label>¿Vienes con acompañante?</label>
+                        <label>¿Vienes con acompañante?<span class="required-mark">*</span></label>
                         <div class="radio-group">
                             <label><input type="radio" name="entry.1899259683" value="Sí" id="acompanante-si">
                                 Sí</label>
                             <label><input type="radio" name="entry.1899259683" value="No" id="acompanante-no">
                                 No</label>
                         </div>
+                        <span class="field-error" id="error-acompanante">Este campo es obligatorio</span>
                     </div>
                     <!-- Visible si acompañante = Sí -->
                     <div class="form-group form-group--hidden" id="group-nombre-acompanante">
-                        <label for="input-nombre-acompanante">Nombre y apellidos del/de la acompañante</label>
+                        <label for="input-nombre-acompanante">Nombre y apellidos del acompañante<span class="required-mark">*</span></label>
                         <input type="text" id="input-nombre-acompanante" name="entry.1911705945" autocomplete="off">
+                        <span class="field-error" id="error-nombre-acompanante">Este campo es obligatorio</span>
                     </div>
 
                     <!-- Visible si asistencia = Sí -->
                     <div class="form-group form-group--hidden" id="group-hijos">
-                        <label>¿Vienes con hijos?</label>
+                        <label>¿Vienes con hijos?<span class="required-mark">*</span></label>
                         <div class="radio-group">
                             <label><input type="radio" name="entry.186004565" value="Sí" id="hijos-si"> Sí</label>
                             <label><input type="radio" name="entry.186004565" value="No" id="hijos-no"> No</label>
                         </div>
+                        <span class="field-error" id="error-hijos">Este campo es obligatorio</span>
                     </div>
 
                     <!-- Visible si hijos = Sí -->
                     <div class="form-group form-group--hidden" id="group-hijos-detalle">
                         <label for="input-hijos-detalle">Indicar el número de niños, nombre y apellidos, edad y si necesitan menú
-                            infantil</label>
+                            infantil<span class="required-mark">*</span></label>
                         <input type="text" id="input-hijos-detalle" name="entry.167933810" autocomplete="off">
+                        <span class="field-error" id="error-hijos-detalle">Este campo es obligatorio</span>
                     </div>
 
                 </fieldset>
@@ -563,16 +574,18 @@
                     <!-- Visible si asistencia = Sí -->
                     <div class="form-group form-group--hidden" id="group-alergias">
                         <label for="input-alergias">¿Eres celíaco, tienes alguna alergia, intolerancia o restricción
-                            alimenticia? <span class="label-hint">Incluye también a tu acompañante si
-                                aplica</span></label>
+                            alimenticia?<span class="required-mark">*</span> <span class="label-hint">Incluye también a tu acompañante si
+                                aplica. Si no tienes, escribe "No"</span></label>
                         <input type="text" id="input-alergias" name="entry.1585004093" autocomplete="off">
+                        <span class="field-error" id="error-alergias">Este campo es obligatorio</span>
                     </div>
 
                     <!-- Visible si asistencia = Sí -->
                     <div class="form-group form-group--hidden" id="group-vegano">
-                        <label for="input-vegano">¿Eres vegano o vegetariano? <span class="label-hint">Incluye también a
-                                tu acompañante si aplica</span></label>
+                        <label for="input-vegano">¿Eres vegano o vegetariano?<span class="required-mark">*</span> <span class="label-hint">Incluye también a
+                                tu acompañante si aplica. Si no, escribe "No"</span></label>
                         <input type="text" id="input-vegano" name="entry.995815532" autocomplete="off">
+                        <span class="field-error" id="error-vegano">Este campo es obligatorio</span>
                     </div>
 
                 </fieldset>
@@ -582,24 +595,26 @@
                     <legend class="form-fieldset__legend">Transporte</legend>
 
                     <div class="form-group form-group--hidden" id="group-bus-ida">
-                        <label>¿Necesitarás autobús de ida?</label>
+                        <label>¿Necesitarás autobús de ida?<span class="required-mark">*</span></label>
                         <div class="radio-group">
                             <label><input type="radio" name="entry.1679883743" value="Sí"> Sí</label>
                             <label><input type="radio" name="entry.1679883743" value="No"> No</label>
                         </div>
+                        <span class="field-error" id="error-bus-ida">Este campo es obligatorio</span>
                     </div>
 
                     <div class="form-group form-group--hidden" id="group-bus-vuelta">
-                        <label>¿Necesitarás autobús de vuelta?</label>
+                        <label>¿Necesitarás autobús de vuelta?<span class="required-mark">*</span></label>
                         <div class="radio-group">
                             <label><input type="radio" name="entry.303435702" value="Sí" id="bus-vuelta-si"> Sí</label>
                             <label><input type="radio" name="entry.303435702" value="No" id="bus-vuelta-no"> No</label>
                         </div>
+                        <span class="field-error" id="error-bus-vuelta">Este campo es obligatorio</span>
                     </div>
 
                     <!-- Visible si bus vuelta = Sí -->
                     <div class="form-group form-group--hidden" id="group-bus-vuelta-cual">
-                        <label>¿Qué autobús de vuelta cogerás?</label>
+                        <label>¿Qué autobús de vuelta cogerás?<span class="required-mark">*</span></label>
                         <div class="radio-group">
                             <label><input type="radio" name="entry.595612430"
                                     value="El primero, dos horas después del baile nupcial"> El primero, dos horas
@@ -610,6 +625,7 @@
                                 hasta
                                 el final de la fiesta</label>
                         </div>
+                        <span class="field-error" id="error-bus-vuelta-cual">Este campo es obligatorio</span>
                     </div>
 
                 </fieldset>
