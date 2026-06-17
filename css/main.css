@@ -1513,6 +1513,22 @@ button:disabled {
     margin-bottom: 4px;
 }
 
+/* ── Footer copyright ── */
+.site-footer {
+    padding: 24px 16px;
+    text-align: center;
+    background: transparent;
+}
+
+.site-footer__copy {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 0.97rem;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    opacity: 0.85;
+}
+
 .bus-stop__time-pill {
     display: inline-flex;
     align-items: center;
