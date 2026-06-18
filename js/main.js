@@ -702,7 +702,7 @@
     var container = document.getElementById('redThreadText');
     if (!container) return;
 
-    var text = 'El hilo rojo conecta a quienes están destinados a estar juntos, no importa ni el tiempo ni el lugar, al final siempre se encontrarán... E&G';
+    var text = 'El hilo rojo conecta a quienes están destinados a estar juntos. No importa ni el tiempo ni el lugar, al final siempre se encontrarán... E&G';
 
     // Construir un <span> por carácter
     var hiloStart = text.indexOf('hilo rojo');

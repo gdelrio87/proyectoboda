@@ -552,7 +552,7 @@ a {
 .form-section__subtitle {
     text-align: center;
     font-family: Georgia, serif;
-    font-size: clamp(0.88rem, 3.5vw, 1rem);
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
     font-style: italic;
     color: var(--text);
     opacity: 0.82;
@@ -566,7 +566,7 @@ a {
 .form-section__subtitle_regalo {
     text-align: center;
     font-family: Georgia, serif;
-    font-size: clamp(0.88rem, 7.5vw, 1rem);
+    font-size: clamp(1.0rem, 3.5vw, 1.2rem);
     font-style: italic;
     color: var(--text);
     opacity: 0.82;
