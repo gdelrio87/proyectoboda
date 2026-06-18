@@ -579,11 +579,11 @@
     });
     slides[0].closest('.hero-slideshow').appendChild(dotsContainer);
 
-    // Primera transición rápida (1.5s), luego ritmo normal
+    // Primera transición rápida (2s), luego ritmo normal
     setTimeout(function () {
         next();
         startInterval(NORMAL_INTERVAL);
-    }, 1500);
+    }, 2000);
 })();
 
 /* ── Lightbox para imágenes del cronograma ── */
