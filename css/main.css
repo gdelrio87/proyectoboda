@@ -643,7 +643,7 @@ label {
     display: block;
     margin-bottom: 10px;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1rem, 2.8vw, 1.15rem);
+    font-size: clamp(1rem, 4.0vw, 1.15rem);
     font-style: italic;
     font-weight: 600;
     color: var(--primary-dark);
@@ -728,7 +728,7 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1rem, 2.8vw, 1.1rem);
+    font-size: clamp(1rem, 3.5vw, 1.1rem);
     font-style: italic;
     font-weight: 500;
     color: var(--primary-dark);
