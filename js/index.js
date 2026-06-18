@@ -35,7 +35,7 @@ function playVideo() {
     }
 }
 
-startOvl.addEventListener('click', () => {
+document.getElementById('startBtn').addEventListener('click', () => {
     startOvl.style.display = 'none';
     playVideo();
 });
