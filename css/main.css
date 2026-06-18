@@ -223,7 +223,7 @@ a {
 
 .timeline-group-location {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    font-size: clamp(0.85rem, 4.5vw, 1rem);
     font-style: italic;
     color: var(--primary);
     letter-spacing: 0.03em;
@@ -540,7 +540,7 @@ a {
 .form-section__title {
     text-align: center;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1.2rem, 3.5vw, 1.3rem);
+    font-size: clamp(1.2rem, 4.0vw, 1.3rem);
     font-style: italic;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -552,7 +552,7 @@ a {
 .form-section__subtitle {
     text-align: center;
     font-family: Georgia, serif;
-    font-size: clamp(0.88rem, 2.4vw, 1rem);
+    font-size: clamp(0.88rem, 3.5vw, 1rem);
     font-style: italic;
     color: var(--text);
     opacity: 0.82;

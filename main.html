@@ -8,6 +8,8 @@
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%239c4c4c'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2C serif' font-size='22' font-style='italic' fill='white'%3EE%26amp%3BG%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="css/main.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://docs.google.com; connect-src 'self' https://docs.google.com; media-src 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 
 <body>
@@ -451,7 +453,7 @@
 
                 <!-- Grupo 1: Iglesia de los Terceros -->
                 <div class="timeline-group">
-                    <a href="https://maps.app.goo.gl/nYLEumkEwZChgWUt6" target="_blank">
+                    <a href="https://maps.app.goo.gl/nYLEumkEwZChgWUt6" target="_blank" rel="noopener noreferrer">
                         <div class="timeline-group-header reveal reveal--left">
                             <span class="timeline-group-location">Iglesia Los Terceros · Sevilla</span>
                         </div>
@@ -469,7 +471,7 @@
 
                 <!-- Grupo 2: Hacienda Al-Baraka -->
                 <div class="timeline-group">
-                    <a href="https://maps.app.goo.gl/G58K5i88nBMpqXDCA" target="_blank">
+                    <a href="https://maps.app.goo.gl/G58K5i88nBMpqXDCA" target="_blank" rel="noopener noreferrer">
                         <div class="timeline-group-header reveal reveal--left">
                             <span class="timeline-group-location">Hacienda Al-Baraka - Alcálá de Guadaíra</span>
                         </div>
@@ -673,7 +675,7 @@
             </form>
             <p id="formStatus" class="form-status" hidden aria-live="polite"></p>
             <iframe name="google-form-response-frame" id="googleFormResponseFrame" class="form-response-frame"
-                title="Respuesta del formulario"></iframe>
+                title="Respuesta del formulario" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
         </section>
 
     </div><!-- /sections-grid -->

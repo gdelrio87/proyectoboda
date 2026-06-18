@@ -410,7 +410,7 @@
         }
 
         // Validar email
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
         if (inputEmail && (!inputEmail.value.trim() || !emailRegex.test(inputEmail.value.trim()))) {
             inputEmail.classList.add('input--invalid');
             var errEmail = document.getElementById('error-email');
