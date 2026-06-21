@@ -109,7 +109,7 @@
             return;
         }
 
-        const wedding = new Date('November 21, 2026 12:00:00');
+        const wedding = new Date('2026-11-21T12:00:00+01:00'); // Hora española (CET, UTC+1)
         const now = new Date();
 
         // Calcular meses completos restantes
