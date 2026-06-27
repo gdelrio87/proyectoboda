@@ -707,11 +707,13 @@
     // Construir un <span> por carácter
     var hiloStart = text.indexOf('hilo rojo');
     var hiloEnd = hiloStart + 'hilo rojo'.length - 1;
+    var egStart = text.indexOf('E&G');
+    var egEnd = egStart + 'E&G'.length - 1;
     text.split('').forEach(function (ch, i) {
         var span = document.createElement('span');
         span.className = 'char';
         span.textContent = ch;
-        if (i >= hiloStart && i <= hiloEnd) {
+        if ((i >= hiloStart && i <= hiloEnd) || (egStart !== -1 && i >= egStart && i <= egEnd)) {
             span.style.color = '#ff0000';
         }
         container.appendChild(span);
