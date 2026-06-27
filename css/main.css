@@ -563,6 +563,58 @@ a {
     margin-right: auto;
 }
 
+.regalo-cuenta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem auto 0;
+    padding: 1.75rem 2.5rem;
+    max-width: 560px;
+    border: 1px solid rgba(156, 76, 76, 0.25);
+    border-radius: 12px;
+    background: rgba(156, 76, 76, 0.04);
+}
+
+.regalo-cuenta__iban {
+    font-family: Georgia, serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #9c4c4c;
+    margin: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .regalo-cuenta {
+        padding: 1.25rem 0.75rem;
+    }
+    .regalo-cuenta__iban {
+        font-size: clamp(0.7rem, 4.8vw, 1rem);
+        letter-spacing: 0.05em;
+    }
+}
+
+.regalo-cuenta__titulares {
+    font-size: 0.72rem;
+    font-style: italic;
+    color: #aaa;
+    letter-spacing: 0.03em;
+    margin: 0;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.regalo-cuenta__titulares-label {
+    font-style: normal;
+    font-weight: 600;
+    color: #bbb;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.62rem;
+}
+
 .form-section__subtitle_regalo {
     text-align: center;
     font-family: Georgia, serif;
