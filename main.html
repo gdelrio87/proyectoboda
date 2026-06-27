@@ -718,14 +718,17 @@
     (function () {
         var card = document.getElementById('regaloCuenta');
         if (!card) return;
+        var hint = card.querySelector('.regalo-cuenta__hint');
         function reveal() {
             card.classList.add('is-revealed');
             card.setAttribute('aria-label', 'Datos bancarios visibles');
         }
-        card.addEventListener('click', reveal);
-        card.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); }
-        });
+        if (hint) {
+            hint.addEventListener('click', reveal);
+            hint.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); }
+            });
+        }
     })();
     </script>
 </body>
