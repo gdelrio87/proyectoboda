@@ -684,9 +684,12 @@
     <section id="regalo" class="reveal">
         <h2 class="form-section__title">REGALO</h2>
         <p class="form-section__subtitle">Lo importante es que vengáis con ilusión, alegría y ganas de pasarlo bien. Si, además, quéreis hacernos un regalo, aquí tenéis nuestro número de cuenta.</p>
-        <div class="regalo-cuenta">
-            <p class="regalo-cuenta__iban">ES34 0182 5332 1702 0856 6930</p>
-            <p class="regalo-cuenta__titulares"><span class="regalo-cuenta__titulares-label">Titulares:</span><br>Gonzalo del Río Aláez<br>Elisabet María Pereira Ruiz</p>
+        <div class="regalo-cuenta" id="regaloCuenta" role="button" tabindex="0" aria-label="Pulsa para ver los datos bancarios">
+            <span class="regalo-cuenta__hint">Pulsa para ver los datos</span>
+            <div class="regalo-cuenta__content">
+                <p class="regalo-cuenta__iban">ES34 0182 5332 1702 0856 6930</p>
+                <p class="regalo-cuenta__titulares"><span class="regalo-cuenta__titulares-label">Titulares:</span><br>Gonzalo del Río Aláez<br>Elisabet María Pereira Ruiz</p>
+            </div>
         </div>
     </section>
 
@@ -711,6 +714,20 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    (function () {
+        var card = document.getElementById('regaloCuenta');
+        if (!card) return;
+        function reveal() {
+            card.classList.add('is-revealed');
+            card.setAttribute('aria-label', 'Datos bancarios visibles');
+        }
+        card.addEventListener('click', reveal);
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reveal(); }
+        });
+    })();
+    </script>
 </body>
 
 </html>
