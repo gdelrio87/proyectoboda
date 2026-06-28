@@ -303,6 +303,12 @@
                 hide('group-nombre-acompanante');
                 hide('group-hijos-detalle');
                 hide('group-bus-vuelta-cual');
+                hide('group-alergia-propia-detalle');
+                hide('group-alergias-acompanante');
+                hide('group-alergia-acomp-detalle');
+                hide('group-vegano-detalle');
+                hide('group-vegano-acompanante');
+                hide('group-vegano-acomp-detalle');
                 fieldsetsAsistencia.forEach(hideFieldset);
             }
         });
@@ -311,8 +317,40 @@
     // Radios de acompañante
     document.querySelectorAll('input[name="entry.1899259683"]').forEach(function (radio) {
         radio.addEventListener('change', function () {
-            if (this.value === 'Sí') { show('group-nombre-acompanante'); }
-            else { hide('group-nombre-acompanante'); }
+            if (this.value === 'Sí') {
+                show('group-nombre-acompanante');
+                var asistenciaSi = document.querySelector('input[name="entry.877086558"]:checked');
+                if (asistenciaSi && asistenciaSi.value === 'Sí') {
+                    show('group-alergias-acompanante');
+                    show('group-vegano-acompanante');
+                }
+            } else {
+                hide('group-nombre-acompanante');
+                hide('group-alergias-acompanante');
+                hide('group-alergia-acomp-detalle');
+                hide('group-vegano-acompanante');
+                hide('group-vegano-acomp-detalle');
+            }
+        });
+    });
+
+    // Radios de alergia propia
+    document.querySelectorAll('input[name="alergia-propia-radio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') { show('group-alergia-propia-detalle'); }
+            else { hide('group-alergia-propia-detalle'); }
+            var err = document.getElementById('error-alergias');
+            if (err) err.classList.remove('field-error--visible');
+        });
+    });
+
+    // Radios de alergia acompañante
+    document.querySelectorAll('input[name="alergia-acomp-radio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') { show('group-alergia-acomp-detalle'); }
+            else { hide('group-alergia-acomp-detalle'); }
+            var err = document.getElementById('error-alergias-acompanante');
+            if (err) err.classList.remove('field-error--visible');
         });
     });
 
@@ -375,21 +413,104 @@
         });
     });
 
-    var inputAlergias = document.getElementById('input-alergias');
-    if (inputAlergias) {
-        inputAlergias.addEventListener('input', function () { clearError(this, 'error-alergias'); });
+    var inputAlergias = document.getElementById('input-alergias'); // hidden, valor combinado por JS
+    var inputAlergiasDetalle = document.getElementById('input-alergias-detalle');
+    if (inputAlergiasDetalle) {
+        inputAlergiasDetalle.addEventListener('input', function () {
+            var err = document.getElementById('error-alergias');
+            if (err) err.classList.remove('field-error--visible');
+            this.classList.remove('input--invalid');
+        });
     }
-    var inputVegano = document.getElementById('input-vegano');
-    if (inputVegano) {
-        inputVegano.addEventListener('input', function () { clearError(this, 'error-vegano'); });
+    var inputAlergiasAcomp = document.getElementById('input-alergias-acompanante');
+    if (inputAlergiasAcomp) {
+        inputAlergiasAcomp.addEventListener('input', function () {
+            var err = document.getElementById('error-alergias-acompanante');
+            if (err) err.classList.remove('field-error--visible');
+            this.classList.remove('input--invalid');
+        });
     }
+    var inputVegano = document.getElementById('input-vegano'); // hidden, valor combinado por JS
+    var inputVeganoDetalle = document.getElementById('input-vegano-detalle');
+    if (inputVeganoDetalle) {
+        inputVeganoDetalle.addEventListener('input', function () {
+            var err = document.getElementById('error-vegano');
+            if (err) err.classList.remove('field-error--visible');
+            this.classList.remove('input--invalid');
+        });
+    }
+    var inputVeganoAcomp = document.getElementById('input-vegano-acompanante');
+    if (inputVeganoAcomp) {
+        inputVeganoAcomp.addEventListener('input', function () {
+            var err = document.getElementById('error-vegano-acompanante');
+            if (err) err.classList.remove('field-error--visible');
+            this.classList.remove('input--invalid');
+        });
+    }
+
+    // Radios de vegano
+    document.querySelectorAll('input[name="vegano-radio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') { show('group-vegano-detalle'); }
+            else { hide('group-vegano-detalle'); }
+            var err = document.getElementById('error-vegano');
+            if (err) err.classList.remove('field-error--visible');
+        });
+    });
+
+    // Radios de vegano acompañante
+    document.querySelectorAll('input[name="vegano-acomp-radio"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (this.value === 'Sí') { show('group-vegano-acomp-detalle'); }
+            else { hide('group-vegano-acomp-detalle'); }
+            var err = document.getElementById('error-vegano-acompanante');
+            if (err) err.classList.remove('field-error--visible');
+        });
+    });
     var inputNombreAcompanante = document.getElementById('input-nombre-acompanante');
     if (inputNombreAcompanante) {
         inputNombreAcompanante.addEventListener('input', function () { clearError(this, 'error-nombre-acompanante'); });
     }
-    var inputHijosDetalle = document.getElementById('input-hijos-detalle');
-    if (inputHijosDetalle) {
-        inputHijosDetalle.addEventListener('input', function () { clearError(this, 'error-hijos-detalle'); });
+    var inputHijosDetalle = document.getElementById('input-hijos-detalle'); // hidden, combinado en submit
+
+    // Grid de hijos ─ gestionar botones + y −
+    var hijosRowsContainer = document.getElementById('hijosRows');
+
+    function updateHijosButtons() {
+        if (!hijosRowsContainer) return;
+        var allRows = hijosRowsContainer.querySelectorAll('.hijos-row');
+        allRows.forEach(function (row, i) {
+            var addBtn = row.querySelector('.hijos-add-btn');
+            var delBtn = row.querySelector('.hijos-del-btn');
+            if (addBtn) addBtn.style.visibility = (i === allRows.length - 1) ? 'visible' : 'hidden';
+            if (delBtn) delBtn.style.visibility = (allRows.length > 1) ? 'visible' : 'hidden';
+        });
+    }
+
+    if (hijosRowsContainer) {
+        hijosRowsContainer.addEventListener('click', function (e) {
+            // Añadir fila
+            if (e.target.classList.contains('hijos-add-btn')) {
+                var row = document.createElement('div');
+                row.className = 'hijos-row';
+                row.innerHTML =
+                    '<input type="text" class="hijo-nombre" autocomplete="off">' +
+                    '<input type="text" class="hijo-edad" autocomplete="off">' +
+                    '<div class="hijo-menu-wrap"><input type="checkbox" class="hijo-menu-check"></div>' +
+                    '<button type="button" class="hijos-del-btn" aria-label="Eliminar fila">−</button>' +
+                    '<button type="button" class="hijos-add-btn" aria-label="Añadir niño">+</button>';
+                hijosRowsContainer.appendChild(row);
+                row.querySelector('.hijo-nombre').focus();
+                var err = document.getElementById('error-hijos-detalle');
+                if (err) err.classList.remove('field-error--visible');
+            }
+            // Eliminar fila
+            if (e.target.classList.contains('hijos-del-btn')) {
+                var rowToRemove = e.target.closest('.hijos-row');
+                if (rowToRemove) rowToRemove.remove();
+            }
+            updateHijosButtons();
+        });
     }
     document.querySelectorAll('input[name="entry.595612430"]').forEach(function (radio) {
         radio.addEventListener('change', function () {
@@ -442,17 +563,97 @@
                 }
             });
 
-            if (inputAlergias && !inputAlergias.value.trim()) {
-                inputAlergias.classList.add('input--invalid');
+            // Validar alergias propias
+            var alergiaPropia = form.querySelector('input[name="alergia-propia-radio"]:checked');
+            if (!alergiaPropia) {
                 var errAlergias = document.getElementById('error-alergias');
                 if (errAlergias) errAlergias.classList.add('field-error--visible');
                 valid = false;
+            } else if (alergiaPropia.value === 'Sí') {
+                if (inputAlergiasDetalle && !inputAlergiasDetalle.value.trim()) {
+                    inputAlergiasDetalle.classList.add('input--invalid');
+                    var errAlergias = document.getElementById('error-alergias');
+                    if (errAlergias) errAlergias.classList.add('field-error--visible');
+                    valid = false;
+                }
             }
-            if (inputVegano && !inputVegano.value.trim()) {
-                inputVegano.classList.add('input--invalid');
+            // Establecer valor alergias propias
+            if (alergiaPropia && inputAlergias) {
+                inputAlergias.value = alergiaPropia.value === 'Sí'
+                    ? (inputAlergiasDetalle ? inputAlergiasDetalle.value.trim() : '')
+                    : '';
+            }
+            // Validar alergias acompañante si aplica
+            var acompCheckVal = form.querySelector('input[name="entry.1899259683"]:checked');
+            if (acompCheckVal && acompCheckVal.value === 'Sí') {
+                var alergiaAcompRadio = form.querySelector('input[name="alergia-acomp-radio"]:checked');
+                if (!alergiaAcompRadio) {
+                    var errAlergAcomp = document.getElementById('error-alergias-acompanante');
+                    if (errAlergAcomp) errAlergAcomp.classList.add('field-error--visible');
+                    valid = false;
+                } else if (alergiaAcompRadio.value === 'Sí') {
+                    if (inputAlergiasAcomp && !inputAlergiasAcomp.value.trim()) {
+                        inputAlergiasAcomp.classList.add('input--invalid');
+                        var errAlergAcomp = document.getElementById('error-alergias-acompanante');
+                        if (errAlergAcomp) errAlergAcomp.classList.add('field-error--visible');
+                        valid = false;
+                    }
+                }
+                // Establecer valor alergias acompañante
+                var hiddenAlergAcomp = document.getElementById('input-alergias-acomp-hidden');
+                if (hiddenAlergAcomp) {
+                    hiddenAlergAcomp.value = alergiaAcompRadio && alergiaAcompRadio.value === 'Sí'
+                        ? (inputAlergiasAcomp ? inputAlergiasAcomp.value.trim() : '')
+                        : '';
+                }
+            }
+            // Validar vegano
+            var veganoRadio = form.querySelector('input[name="vegano-radio"]:checked');
+            if (!veganoRadio) {
                 var errVegano = document.getElementById('error-vegano');
                 if (errVegano) errVegano.classList.add('field-error--visible');
                 valid = false;
+            } else if (veganoRadio.value === 'Sí') {
+                if (inputVeganoDetalle && !inputVeganoDetalle.value.trim()) {
+                    inputVeganoDetalle.classList.add('input--invalid');
+                    var errVegano = document.getElementById('error-vegano');
+                    if (errVegano) errVegano.classList.add('field-error--visible');
+                    valid = false;
+                }
+            }
+            // Validar vegano acompañante si aplica
+            var acompCheckVegano = form.querySelector('input[name="entry.1899259683"]:checked');
+            if (acompCheckVegano && acompCheckVegano.value === 'Sí') {
+                var veganoAcompRadio = form.querySelector('input[name="vegano-acomp-radio"]:checked');
+                if (!veganoAcompRadio) {
+                    var errVeganoAcomp = document.getElementById('error-vegano-acompanante');
+                    if (errVeganoAcomp) errVeganoAcomp.classList.add('field-error--visible');
+                    valid = false;
+                } else if (veganoAcompRadio.value === 'Sí') {
+                    if (inputVeganoAcomp && !inputVeganoAcomp.value.trim()) {
+                        inputVeganoAcomp.classList.add('input--invalid');
+                        var errVeganoAcomp = document.getElementById('error-vegano-acompanante');
+                        if (errVeganoAcomp) errVeganoAcomp.classList.add('field-error--visible');
+                        valid = false;
+                    }
+                }
+            }
+            // Establecer valor del campo vegano propio
+            if (veganoRadio && inputVegano) {
+                inputVegano.value = veganoRadio.value === 'Sí'
+                    ? (inputVeganoDetalle ? inputVeganoDetalle.value.trim() : '')
+                    : '';
+            }
+            // Establecer valor vegano acompañante
+            var acompCheckVeg2 = form.querySelector('input[name="entry.1899259683"]:checked');
+            if (acompCheckVeg2 && acompCheckVeg2.value === 'Sí') {
+                var vegAcompFinal = form.querySelector('input[name="vegano-acomp-radio"]:checked');
+                var hiddenVegAcomp = document.getElementById('input-vegano-acomp-hidden');
+                if (hiddenVegAcomp) {
+                    hiddenVegAcomp.value = vegAcompFinal && vegAcompFinal.value === 'Sí'
+                        ? (inputVeganoAcomp ? inputVeganoAcomp.value.trim() : '')
+                        : '';
+                }
             }
 
             // Validar nombre acompañante si viene con acompañante
@@ -466,11 +667,24 @@
                 }
             }
 
-            // Validar detalle hijos si viene con hijos
+            // Validar y construir datos de hijos
             var hijosSi = form.querySelector('input[name="entry.186004565"]:checked');
             if (hijosSi && hijosSi.value === 'Sí') {
-                if (inputHijosDetalle && !inputHijosDetalle.value.trim()) {
-                    inputHijosDetalle.classList.add('input--invalid');
+                var hijosRows = document.querySelectorAll('#hijosRows .hijos-row');
+                var hijosData = [];
+                hijosRows.forEach(function (row) {
+                    var nombreEl = row.querySelector('.hijo-nombre');
+                    var edadEl = row.querySelector('.hijo-edad');
+                    var menuEl = row.querySelector('.hijo-menu-check');
+                    var nombreVal = nombreEl ? nombreEl.value.trim() : '';
+                    var edadVal = edadEl ? edadEl.value.trim() : '';
+                    var menuVal = menuEl && menuEl.checked ? 'Sí' : 'No';
+                    if (nombreVal || edadVal) {
+                        hijosData.push('Nombre: ' + nombreVal + ', Edad: ' + edadVal + ', Menú Inf: ' + menuVal);
+                    }
+                });
+                if (inputHijosDetalle) inputHijosDetalle.value = hijosData.join(' / ');
+                if (hijosData.length === 0) {
                     var errHijosDetalle = document.getElementById('error-hijos-detalle');
                     if (errHijosDetalle) errHijosDetalle.classList.add('field-error--visible');
                     valid = false;

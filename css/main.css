@@ -1623,6 +1623,104 @@ button:disabled {
 }
 
 /* ── Footer copyright ── */
+/* ── Grid de hijos ── */
+.hijos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.hijos-grid__header,
+.hijos-row {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.65fr 28px 28px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.hijos-grid__header {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1rem, 4.0vw, 1.15rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--primary-dark);
+    letter-spacing: 0.02em;
+    padding: 0 2px;
+    margin-bottom: 2px;
+}
+
+.hijos-grid__header span:nth-child(2),
+.hijos-grid__header span:nth-child(3) {
+    text-align: center;
+}
+
+.hijos-grid__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.hijos-row input[type="text"] {
+    width: 100%;
+    margin: 0;
+}
+
+.hijos-row input[type="text"]:nth-child(2) {
+    text-align: center;
+}
+
+.hijo-menu-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hijo-menu-check {
+    width: 18px !important;
+    height: 18px !important;
+    min-height: 0 !important;
+    accent-color: var(--primary);
+    cursor: pointer;
+    margin: 0;
+    display: block;
+}
+
+.hijos-add-btn,
+.hijos-del-btn {
+    width: 28px !important;
+    height: 28px !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    font-size: 1.2rem !important;
+    font-style: normal !important;
+    border-radius: 6px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0;
+}
+
+.hijos-del-btn {
+    background: rgba(156, 76, 76, 0.15) !important;
+    color: var(--primary-dark) !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 480px) {
+    .hijos-grid__header,
+    .hijos-row {
+        grid-template-columns: 1fr 0.45fr 0.55fr 24px 24px;
+        gap: 0.3rem;
+    }
+    .hijos-add-btn,
+    .hijos-del-btn {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 1rem !important;
+    }
+}
+
 .site-footer {
     padding: 24px 16px;
     text-align: center;

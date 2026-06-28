@@ -581,11 +581,27 @@
 
                     <!-- Visible si hijos = Sí -->
                     <div class="form-group form-group--hidden" id="group-hijos-detalle">
-                        <label for="input-hijos-detalle">Indicar el número de niños, nombre y apellidos, edad y si
-                            necesitan menú
-                            infantil<span class="required-mark">*</span></label>
-                        <input type="text" id="input-hijos-detalle" name="entry.167933810" autocomplete="off">
-                        <span class="field-error" id="error-hijos-detalle">Este campo es obligatorio</span>
+                        <label>Datos de los niños<span class="required-mark">*</span></label>
+                        <div class="hijos-grid">
+                            <div class="hijos-grid__header">
+                                <span>Nombre Completo</span>
+                                <span>Edad</span>
+                                <span>Menú Infantil</span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="hijos-grid__rows" id="hijosRows">
+                                <div class="hijos-row">
+                                    <input type="text" class="hijo-nombre" autocomplete="off">
+                                    <input type="text" class="hijo-edad" autocomplete="off">
+                                    <div class="hijo-menu-wrap"><input type="checkbox" class="hijo-menu-check"></div>
+                                    <button type="button" class="hijos-del-btn" aria-label="Eliminar fila" style="visibility:hidden">−</button>
+                                    <button type="button" class="hijos-add-btn" aria-label="Añadir niño">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="input-hijos-detalle" name="entry.167933810">
+                        <span class="field-error" id="error-hijos-detalle">Indica el nombre de al menos un niño</span>
                     </div>
 
                 </fieldset>
@@ -596,21 +612,58 @@
 
                     <!-- Visible si asistencia = Sí -->
                     <div class="form-group form-group--hidden" id="group-alergias">
-                        <label for="input-alergias">¿Eres celíaco, tienes alguna alergia, intolerancia o restricción
-                            alimenticia?<span class="required-mark">*</span> <span class="label-hint">Incluye también a
-                                tu acompañante si
-                                aplica. Si no tienes, escribe "No"</span></label>
-                        <input type="text" id="input-alergias" name="entry.1585004093" autocomplete="off">
+                        <label>¿Eres celíaco, tienes alguna alergia, intolerancia o restricción alimenticia?<span class="required-mark">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="alergia-propia-radio" value="Sí" id="alergia-propia-si"> Sí</label>
+                            <label><input type="radio" name="alergia-propia-radio" value="No" id="alergia-propia-no"> No</label>
+                        </div>
+                        <div class="form-group form-group--hidden" id="group-alergia-propia-detalle">
+                            <input type="text" id="input-alergias-detalle" placeholder="Indica tu respuesta" autocomplete="off">
+                        </div>
+                        <input type="hidden" id="input-alergias" name="entry.1585004093">
                         <span class="field-error" id="error-alergias">Este campo es obligatorio</span>
+                    </div>
+
+                    <!-- Visible si asistencia = Sí y acompañante = Sí -->
+                    <div class="form-group form-group--hidden" id="group-alergias-acompanante">
+                        <label>¿Y tu acompañante?<span class="required-mark">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="alergia-acomp-radio" value="Sí" id="alergia-acomp-si"> Sí</label>
+                            <label><input type="radio" name="alergia-acomp-radio" value="No" id="alergia-acomp-no"> No</label>
+                        </div>
+                        <div class="form-group form-group--hidden" id="group-alergia-acomp-detalle">
+                            <input type="text" id="input-alergias-acompanante" placeholder="Indica su respuesta" autocomplete="off">
+                        </div>
+                        <input type="hidden" id="input-alergias-acomp-hidden" name="entry.70976994">
+                        <span class="field-error" id="error-alergias-acompanante">Este campo es obligatorio</span>
                     </div>
 
                     <!-- Visible si asistencia = Sí -->
                     <div class="form-group form-group--hidden" id="group-vegano">
-                        <label for="input-vegano">¿Eres vegano o vegetariano?<span class="required-mark">*</span> <span
-                                class="label-hint">Incluye también a
-                                tu acompañante si aplica. Si no, escribe "No"</span></label>
-                        <input type="text" id="input-vegano" name="entry.995815532" autocomplete="off">
+                        <label>¿Eres vegano o vegetariano?<span class="required-mark">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="vegano-radio" value="Sí" id="vegano-si"> Sí</label>
+                            <label><input type="radio" name="vegano-radio" value="No" id="vegano-no"> No</label>
+                        </div>
+                        <div class="form-group form-group--hidden" id="group-vegano-detalle">
+                            <input type="text" id="input-vegano-detalle" placeholder="Indica tu respuesta" autocomplete="off">
+                        </div>
+                        <input type="hidden" id="input-vegano" name="entry.995815532">
                         <span class="field-error" id="error-vegano">Este campo es obligatorio</span>
+                    </div>
+
+                    <!-- Visible si asistencia = Sí y acompañante = Sí -->
+                    <div class="form-group form-group--hidden" id="group-vegano-acompanante">
+                        <label>¿Y tu acompañante?<span class="required-mark">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="vegano-acomp-radio" value="Sí" id="vegano-acomp-si"> Sí</label>
+                            <label><input type="radio" name="vegano-acomp-radio" value="No" id="vegano-acomp-no"> No</label>
+                        </div>
+                        <div class="form-group form-group--hidden" id="group-vegano-acomp-detalle">
+                            <input type="text" id="input-vegano-acompanante" placeholder="Indica su respuesta" autocomplete="off">
+                        </div>
+                        <input type="hidden" id="input-vegano-acomp-hidden" name="entry.381016445">
+                        <span class="field-error" id="error-vegano-acompanante">Este campo es obligatorio</span>
                     </div>
 
                 </fieldset>
