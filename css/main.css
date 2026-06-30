@@ -760,6 +760,14 @@ label {
     margin-top: 2px;
 }
 
+.field-hint {
+    margin: 4px 0 8px;
+    font-family: Georgia, serif;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: #7a6a55;
+}
+
 .field-error {
     display: none;
     margin-top: 6px;
