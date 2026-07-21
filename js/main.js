@@ -173,12 +173,10 @@
         setInterval(updateCountdown, 1000);
     }
 
-    if (weddingRsvpForm && googleFormResponseFrame && formStatus && weddingRsvpSubmit) {
-        googleFormResponseFrame.addEventListener('load', () => {
-            if (!formSubmissionInProgress) {
-                return;
-            }
+    if (weddingRsvpForm && formStatus && weddingRsvpSubmit) {
 
+        // Muestra el mensaje de éxito y reprograma la reaparición del formulario.
+        function handleSubmissionSuccess() {
             clearSubmissionTimeout();
             weddingRsvpForm.reset();
             weddingRsvpForm.hidden = true;
@@ -191,7 +189,7 @@
                 seccionConfirmacion.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
-            // Ocultar mensaje y mostrar de nuevo el formulario tras 4 segundos
+            // Ocultar mensaje y mostrar de nuevo el formulario tras un tiempo
             setTimeout(() => {
                 formStatus.hidden = true;
                 formStatus.classList.remove('is-success', 'is-error');
@@ -207,17 +205,28 @@
                     if (fs) fs.classList.add('form-fieldset--hidden');
                 });
             }, 30000);
-        });
+        }
+
+        // Muestra un error real (la red bloqueó/cortó el envío) y rehabilita el formulario.
+        function handleSubmissionError() {
+            resetSubmissionState();
+            showFormStatus(FORM_ERROR_MESSAGE, true);
+        }
 
         weddingRsvpForm.addEventListener('submit', (event) => {
+            // Tomamos el control del envío: nada de iframe (frágil en redes móviles).
+            event.preventDefault();
+
+            if (formSubmissionInProgress) {
+                return;
+            }
+
             if (!weddingRsvpForm.checkValidity()) {
-                event.preventDefault();
                 showFormStatus(FORM_ERROR_MESSAGE, true);
                 return;
             }
 
             if (!window.navigator.onLine) {
-                event.preventDefault();
                 showFormStatus(FORM_ERROR_MESSAGE, true);
                 return;
             }
@@ -227,14 +236,37 @@
             formStatus.hidden = true;
             weddingRsvpSubmit.disabled = true;
             weddingRsvpSubmit.textContent = 'Enviando...';
+
+            // Salvaguarda: si la petición se queda colgada, avisamos del error real.
             formSubmissionTimeoutId = window.setTimeout(() => {
                 if (!formSubmissionInProgress) {
                     return;
                 }
-
-                resetSubmissionState();
-                showFormStatus(FORM_ERROR_MESSAGE, true);
+                handleSubmissionError();
             }, FORM_SUBMISSION_TIMEOUT_MS);
+
+            // Envío directo a Google Forms mediante fetch. 'no-cors' impide leer la
+            // respuesta (Google no expone CORS), pero el POST sí llega de forma fiable
+            // en móvil; 'keepalive' ayuda en conexiones inestables. A diferencia del
+            // iframe, un fallo de red aquí SÍ se detecta (rechaza la promesa).
+            fetch(weddingRsvpForm.action, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: new FormData(weddingRsvpForm),
+                keepalive: true
+            })
+                .then(() => {
+                    if (!formSubmissionInProgress) {
+                        return;
+                    }
+                    handleSubmissionSuccess();
+                })
+                .catch(() => {
+                    if (!formSubmissionInProgress) {
+                        return;
+                    }
+                    handleSubmissionError();
+                });
         });
 
         weddingRsvpForm.addEventListener('invalid', () => {
@@ -245,9 +277,7 @@
             if (!formSubmissionInProgress) {
                 return;
             }
-
-            resetSubmissionState();
-            showFormStatus(FORM_ERROR_MESSAGE, true);
+            handleSubmissionError();
         });
     }
 })();
