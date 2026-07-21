@@ -99,7 +99,7 @@
     const formStatus = document.getElementById('formStatus');
     const weddingRsvpSubmit = document.getElementById('weddingRsvpSubmit');
     const FORM_ERROR_MESSAGE = 'No se ha podido enviar el formulario. Intentalo de nuevo en unos minutos.';
-    const FORM_SUCCESS_MESSAGE = 'Se ha enviado un correo de confirmación al email. En caso de error, puede modificar la respuesta siguiendo las instrucciones del mismo.';
+    const FORM_SUCCESS_MESSAGE = 'Te hemos enviado un correo de confirmación. Si no lo recibes, revisa el spam y, si aún así no llega, contacta con nosotros.';
     const FORM_SUBMISSION_TIMEOUT_MS = 10000;
     let formSubmissionInProgress = false;
     let formSubmissionTimeoutId = null;
