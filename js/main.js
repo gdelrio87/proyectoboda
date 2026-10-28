@@ -89,7 +89,6 @@
 })();
 
 (function () {
-    const monthsElement = document.getElementById('months');
     const daysElement = document.getElementById('days');
     const hoursElement = document.getElementById('hours');
     const minutesElement = document.getElementById('minutes');
@@ -105,35 +104,19 @@
     let formSubmissionTimeoutId = null;
 
     function updateCountdown() {
-        if (!monthsElement || !daysElement || !hoursElement || !minutesElement || !secondsElement) {
+        if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
             return;
         }
 
         const wedding = new Date('2026-11-21T12:00:00+01:00'); // Hora española (CET, UTC+1)
         const now = new Date();
-
-        // Calcular meses completos restantes
-        let months = (wedding.getFullYear() - now.getFullYear()) * 12 + (wedding.getMonth() - now.getMonth());
-
-        // Fecha futura avanzando 'months' meses desde ahora
-        const futureDate = new Date(now);
-        futureDate.setMonth(futureDate.getMonth() + months);
-
-        // Si nos pasamos, retroceder un mes
-        if (futureDate > wedding) {
-            months--;
-            futureDate.setMonth(futureDate.getMonth() - 1);
-        }
-
-        // Milisegundos restantes tras restar los meses completos
-        const remaining = wedding - futureDate;
+        const remaining = wedding - now;
 
         const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
         const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
-        monthsElement.textContent = months;
         daysElement.textContent = days;
         hoursElement.textContent = hours;
         minutesElement.textContent = minutes;
@@ -168,7 +151,7 @@
         formStatus.classList.toggle('is-success', !isError);
     }
 
-    if (monthsElement && daysElement && hoursElement && minutesElement && secondsElement) {
+    if (daysElement && hoursElement && minutesElement && secondsElement) {
         updateCountdown();
         setInterval(updateCountdown, 1000);
     }
